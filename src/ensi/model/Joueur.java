@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by faye on 01/06/2017.
  */
-public class Personne implements Serializable
+public class Joueur implements Serializable
 {
     public String nom;
     public String prenom;
@@ -14,14 +14,12 @@ public class Personne implements Serializable
     public String port;
     public ArrayList<String> action;
 
-    public Personne()
+    public Joueur()
     {
         this.action= new ArrayList<>();
-        this.action.add("tes1");
-        this.action.add("test2");
     }
 
-    public Personne(String n, String p, String ip, String port)
+    public Joueur(String n, String p, String ip, String port)
     {
         this.nom=n;
         this.prenom=p;

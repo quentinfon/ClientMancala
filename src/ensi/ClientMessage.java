@@ -1,5 +1,5 @@
 package ensi;
-import ensi.model.Personne;
+import ensi.model.Joueur;
 
 import java.io.*;
 
@@ -15,7 +15,7 @@ public class ClientMessage {
     public static void main(String[] zero)
     {
         Socket socket;
-        Personne pers= new Personne();
+        Joueur pers= new Joueur();
 
         try
         {
@@ -24,7 +24,7 @@ public class ClientMessage {
             InputStream is=socket.getInputStream();
             ObjectInputStream ois=new ObjectInputStream(is);
 
-            pers= (Personne) ois.readObject();// envoie de l'objet
+            pers= (Joueur) ois.readObject();// envoie de l'objet
             pers.afficher();
 
             socket.close();
