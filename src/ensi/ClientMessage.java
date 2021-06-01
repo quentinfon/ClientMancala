@@ -24,8 +24,8 @@ public class ClientMessage {
             InputStream is=socket.getInputStream();
             ObjectInputStream ois=new ObjectInputStream(is);
 
-            pers= (Joueur) ois.readObject();// envoie de l'objet
-            pers.afficher();
+            //pers= (Joueur) ois.readObject();// envoie de l'objet
+            //pers.afficher();
 
             socket.close();
 
@@ -35,10 +35,6 @@ public class ClientMessage {
             e.printStackTrace();
         }
         catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
         {
             e.printStackTrace();
         }
