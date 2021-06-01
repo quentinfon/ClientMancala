@@ -13,9 +13,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import java.net.UnknownHostException;
-/**
- * Created by faye on 01/06/2017.
- */
+
+
 public class Client extends Application {
 
     public static Stage stage;
@@ -25,7 +24,7 @@ public class Client extends Application {
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/connexion.fxml"));
-        primaryStage.setTitle("Editeur HTML");
+        primaryStage.setTitle("MANCALA");
 
         primaryStage.setScene(new Scene(root, 1080, 720));
         primaryStage.show();
