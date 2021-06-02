@@ -6,9 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -37,31 +35,30 @@ public class ConnexionController implements Initializable {
 
     @FXML
     public void handleConnect(){
-        Socket socket;
-        Joueur joueur = new Joueur();
+
+        if (Client.socket != null) return;
+
+        Client.joueur.setPseudo(inputPseudo.getText());
 
         try
         {
             String serveur = inputServeur.getText();
             int port = Integer.parseInt(inputPort.getText());
 
-            socket = new Socket(serveur,port);
+            Client.socket = new Socket(serveur,port);
 
-            System.out.println("Demande de connexion");
-            InputStream is=socket.getInputStream();
-            ObjectInputStream ois=new ObjectInputStream(is);
+            System.out.println("Connexion avec l'utilisateur : " + Client.joueur);
+            OutputStream os = Client.socket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.writeObject(Client.joueur);
 
-            Client.joueur = (Joueur) ois.readObject();
-            Client.joueur.afficher();
+            Client.clientThread = new ClientThread();
 
-            socket.close();
 
         } catch (NumberFormatException e){
             errMessage.setText("Format du port incorrect !");
         }catch (IOException e){
             errMessage.setText("Impossible de se connecter au serveur !");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

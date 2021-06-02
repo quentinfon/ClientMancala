@@ -2,51 +2,40 @@ package ensi.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
-/**
- * Created by faye on 01/06/2017.
- */
+
 public class Joueur implements Serializable
 {
-    public String nom;
-    public String prenom;
+    public String id;
+    public String pseudo;
     public String ip;
     public String port;
     public ArrayList<String> action;
 
     public Joueur()
     {
+        this.id = UUID.randomUUID().toString();
+        this.pseudo = "";
         this.action= new ArrayList<>();
     }
 
-    public Joueur(String n, String p, String ip, String port)
+    public Joueur(String pseudo, String ip, String port)
     {
-        this.nom=n;
-        this.prenom=p;
+        this.id = UUID.randomUUID().toString();
+        this.pseudo = pseudo;
         this.ip=ip;
         this.port=port;
         this.action= new ArrayList<>();
-        this.action.add("tes1");
-        this.action.add("test2");
     }
 
-    public void afficher()
+    public String toString()
     {
-        System.out.println(" Données reçues  !!!!");
-        System.out.println("nom" + this.nom);
-        System.out.println("prenom " + this.prenom);
-        System.out.println("ip " + this.ip);
-        System.out.println("port " + this.port);
-
-        System.out.println(" ");
+        return this.id + " : " + this.pseudo + " \nip : " + this.ip + " : " + this.port;
     }
-    public void setNom(String n)
+    public void setPseudo(String pseudo)
     {
-        this.nom=n;
-    }
-    public void setPrenom(String p)
-    {
-        this.prenom=p;
+        this.pseudo=pseudo;
     }
     public void setIp(String ip)
     {
@@ -56,13 +45,9 @@ public class Joueur implements Serializable
     {
         this.port=port;
     }
-    public String setNom()
+    public String getPseudo()
     {
-        return nom;
-    }
-    public String getPrenom()
-    {
-        return prenom;
+        return pseudo;
     }
     public String getIp( )
     {
