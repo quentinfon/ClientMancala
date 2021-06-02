@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,20 +22,28 @@ public class Client extends Application {
     public static Joueur joueur;
     public static Socket socket;
     public static ClientThread clientThread;
+    public static ScreenController screenController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         joueur = new Joueur();
         stage = primaryStage;
 
-        Parent root = FXMLLoader.load(getClass().getResource("/connexion.fxml"));
-        primaryStage.setTitle("MANCALA");
+        Scene scene = new Scene(new AnchorPane(), 1080, 720);
 
-        primaryStage.setScene(new Scene(root, 1080, 720));
+        ScreenController screenController = new ScreenController(scene);
+
+        screenController.addScreen("login", FXMLLoader.load(getClass().getResource( "/connexion.fxml" )));
+        screenController.addScreen("game", FXMLLoader.load(getClass().getResource( "/plateauJeu.fxml" )));
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("MANCALA");
         primaryStage.show();
+
+        screenController.activate("login");
+        Client.screenController = screenController;
     }
 
-    @Override
     public void stop(){
         if(socket != null) {
             try {

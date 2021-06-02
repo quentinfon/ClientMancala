@@ -2,6 +2,7 @@ package ensi;
 
 import ensi.model.Joueur;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -52,6 +53,7 @@ public class ConnexionController implements Initializable {
             ObjectOutputStream oos = new ObjectOutputStream(os);
             oos.writeObject(Client.joueur);
 
+            Client.screenController.activate("game");
             Client.clientThread = new ClientThread();
 
 
