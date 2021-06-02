@@ -1,5 +1,7 @@
 package ensi;
 import ensi.model.Joueur;
+import ensi.trad.Language;
+import ensi.trad.Traduction;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +30,9 @@ public class Client extends Application {
     public void start(Stage primaryStage) throws Exception{
         joueur = new Joueur();
         stage = primaryStage;
+
+        //Set default language
+        Traduction.setLanguage(Language.FR);
 
         Scene scene = new Scene(new AnchorPane(), 1080, 720);
 

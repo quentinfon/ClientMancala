@@ -4,12 +4,20 @@ import ensi.model.Action;
 import ensi.model.Commande;
 import ensi.model.MissingNumToPlayException;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GameController {
+public class GameController implements Initializable {
 
     private int count = 0;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 
     public void play(int numCase){
 
