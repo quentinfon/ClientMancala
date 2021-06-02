@@ -5,15 +5,22 @@ import java.io.*;
 public class ClientThread implements Runnable {
 
     private Thread _threadClient;
+
     private PrintWriter _out;
     private InputStream _in;
+
+    public static ObjectOutputStream oos;
 
     ClientThread()
     {
 
         try
         {
-            _out = new PrintWriter(Client.socket.getOutputStream());
+            OutputStream os = Client.socket.getOutputStream();
+            _out = new PrintWriter(os);
+
+            oos = new ObjectOutputStream(os);
+
             _in = Client.socket.getInputStream();
         }
         catch (IOException e){ }

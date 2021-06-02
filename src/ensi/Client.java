@@ -59,8 +59,4 @@ public class Client extends Application {
         launch(args);
     }
 
-    public void setSocket(Socket s){
-        Client.socket = s;
-
-    }
 }
