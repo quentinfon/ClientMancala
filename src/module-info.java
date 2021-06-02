@@ -4,6 +4,7 @@ module fr.ensicaen.editeurHTML {
     requires javafx.fxml;
     requires javafx.web;
 
+    exports ensi.model;
     exports ensi;
 
 }
