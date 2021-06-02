@@ -1,21 +1,17 @@
 package ensi;
+import ensi.controller.ScreenController;
 import ensi.model.Joueur;
-import ensi.trad.Language;
 import ensi.trad.Traduction;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import java.net.InetAddress;
-
 import java.net.Socket;
-
-import java.net.UnknownHostException;
+import java.util.Locale;
 
 
 public class Client extends Application {
@@ -32,7 +28,7 @@ public class Client extends Application {
         stage = primaryStage;
 
         //Set default language
-        Traduction.setLanguage(Language.FR);
+        Traduction.setLanguage(Locale.FRENCH);
 
         Scene scene = new Scene(new AnchorPane(), 1080, 720);
 

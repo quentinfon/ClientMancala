@@ -1,5 +1,7 @@
-package ensi;
+package ensi.controller;
 
+import ensi.Client;
+import ensi.ClientThread;
 import ensi.model.Action;
 import ensi.model.Commande;
 import ensi.model.MissingNumToPlayException;

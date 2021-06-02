@@ -11,7 +11,7 @@ public class ClientThread implements Runnable {
 
     public static ObjectOutputStream oos;
 
-    ClientThread()
+    public ClientThread()
     {
 
         try

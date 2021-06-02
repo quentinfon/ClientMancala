@@ -1,4 +1,4 @@
-package ensi;
+package ensi.controller;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -15,7 +15,7 @@ public class ScreenController {
         this.main = main;
     }
 
-    protected void addScreen(String name, Pane pane){
+    public void addScreen(String name, Pane pane){
         screenMap.put(name, pane);
     }
 
@@ -23,7 +23,7 @@ public class ScreenController {
         screenMap.remove(name);
     }
 
-    protected void activate(String name){
+    public void activate(String name){
         main.setRoot( screenMap.get(name) );
     }
 

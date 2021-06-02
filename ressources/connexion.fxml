@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ensi.ConnexionController">
+<VBox prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ensi.controller.ConnexionController">
    <children>
-      <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Connexion MANCALINES" textAlignment="CENTER">
+      <Label fx:id="txtConnexion" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" text="Connexion MANCALINES" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
@@ -28,20 +28,20 @@
       </Label>
       <AnchorPane prefHeight="225.0" prefWidth="640.0">
          <children>
-            <Label alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="640.0" text="Pseudo" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <Label fx:id="txtPseudo" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="640.0" text="Pseudo" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="inputPseudo" prefHeight="25.0" prefWidth="409.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="50.0" />
-            <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="640.0" text="Serveur / Port" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <Label fx:id="txtServerPort" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="640.0" text="Serveur / Port" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="inputServeur" layoutX="364.0" layoutY="140.0" prefHeight="25.0" prefWidth="240.0" AnchorPane.topAnchor="140.0" />
             <TextField fx:id="inputPort" layoutX="615.0" layoutY="140.0" prefHeight="25.0" prefWidth="101.0" />
-            <Button layoutX="284.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleConnect" prefHeight="0.0" prefWidth="640.0" text="Connexion" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" />
+            <Button fx:id="loginBtn" layoutX="284.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleConnect" prefHeight="0.0" prefWidth="640.0" text="Connexion" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" />
          </children>
          <VBox.margin>
             <Insets />

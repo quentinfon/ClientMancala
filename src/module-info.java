@@ -6,5 +6,6 @@ module fr.ensicaen.editeurHTML {
 
     exports ensi.model;
     exports ensi;
+    exports ensi.controller;
 
 }
