@@ -16,7 +16,6 @@ public class Joueur implements Serializable
     public Joueur()
     {
         this.id = UUID.randomUUID().toString();
-        this.pseudo = "";
         this.action= new ArrayList<>();
     }
 
@@ -56,5 +55,15 @@ public class Joueur implements Serializable
     public String getPort()
     {
         return port;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if (!(o instanceof Joueur)) return false;
+
+        Joueur j = (Joueur) o;
+        return j.id.equals(this.id);
+
     }
 }
