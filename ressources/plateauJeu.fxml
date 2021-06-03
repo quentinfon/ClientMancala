@@ -10,59 +10,59 @@
    <children>
       <ImageView fitHeight="870.0" fitWidth="1220.0" layoutX="20.0" layoutY="188.0">
          <image>
-            <Image url="@../../../plateau.jpg" />
+            <Image url="@../ressources/img/plateau.jpg" />
          </image>
       </ImageView>
-      <StackPane layoutX="183.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="183.0" layoutY="474.0" onMouseClicked="#handlePlayOne" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="330.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="330.0" layoutY="474.0" onMouseClicked="#handlePlayTwo" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="480.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="480.0" layoutY="474.0" onMouseClicked="#handlePlayThree" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="630.0" layoutY="475.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="630.0" layoutY="475.0" onMouseClicked="#handlePlayFor" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="780.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="780.0" layoutY="474.0" onMouseClicked="#handlePlayFive" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="930.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="930.0" layoutY="474.0" onMouseClicked="#handlePlaySix" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
@@ -71,7 +71,7 @@
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
@@ -80,7 +80,7 @@
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
@@ -89,7 +89,7 @@
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
@@ -98,7 +98,7 @@
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
@@ -107,16 +107,16 @@
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
       <StackPane layoutX="860.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="149.0" fitWidth="200.0">
+            <ImageView fitHeight="149.0" fitWidth="200.0" >
                <image>
-                  <Image url="@../../../../Downloads/bolBois-removebg-preview.png" />
+                  <Image url="@../ressources/img/bolBois.png" />
                </image>
             </ImageView>
          </children>

@@ -7,6 +7,7 @@ import ensi.model.Commande;
 import ensi.model.MissingNumToPlayException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,6 +57,31 @@ public class GameController implements Initializable {
     public void handleTest(){
         count++;
         play(count);
+    }
+
+
+    public void handlePlayOne(MouseEvent mouseEvent) {
+        play(1);
+    }
+
+    public void handlePlayTwo(MouseEvent mouseEvent) {
+        play(2);
+    }
+
+    public void handlePlayThree(MouseEvent mouseEvent) {
+        play(3);
+    }
+
+    public void handlePlayFor(MouseEvent mouseEvent) {
+        play(4);
+    }
+
+    public void handlePlayFive(MouseEvent mouseEvent) {
+        play(5);
+    }
+
+    public void handlePlaySix(MouseEvent mouseEvent) {
+        play(6);
     }
 
 }
