@@ -67,6 +67,7 @@ public class ConnexionController implements Initializable {
             String serveur = inputServeur.getText();
             int port = Integer.parseInt(inputPort.getText());
 
+            System.out.println("Test");
             Client.socket = new Socket(serveur,port);
 
             System.out.println("Connexion avec l'utilisateur : " + Client.joueur);
@@ -74,7 +75,11 @@ public class ConnexionController implements Initializable {
             Client.screenController.activate("game");
             Client.clientThread = new ClientThread();
 
+            System.out.println("ee");
+            //Envoie du joueur au serveur
             ClientThread.oos.writeObject(Client.joueur);
+
+            System.out.println("Test");
 
 
         } catch (NumberFormatException e){

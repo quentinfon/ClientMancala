@@ -1,125 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ensi.controller.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ensi.controller.GameController">
    <children>
-      <ImageView fitHeight="870.0" fitWidth="1220.0" layoutX="20.0" layoutY="56.0">
+      <ImageView fitHeight="720.0" fitWidth="1080.0" layoutX="353.0" layoutY="176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@./img/plateau.jpg" />
+            <Image url="@img/plateau.png" />
          </image>
       </ImageView>
-      <StackPane layoutX="183.0" layoutY="474.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="65.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="149.0" fitWidth="200.0">
+               <image>
+                  <Image url="@./img/bolBois.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </StackPane>
+      <StackPane layoutX="215.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="330.0" layoutY="474.0" onMouseClicked="#handlePlayTwo" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="365.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="480.0" layoutY="474.0" onMouseClicked="#handlePlayThree" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="515.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="630.0" layoutY="475.0" onMouseClicked="#handlePlayFor" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="665.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="780.0" layoutY="474.0" onMouseClicked="#handlePlayFive" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="825.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="930.0" layoutY="474.0" onMouseClicked="#handlePlaySix" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="75.0" layoutY="245.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="110.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="225.0" layoutY="245.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="260.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="375.0" layoutY="245.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="410.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="525.0" layoutY="245.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="560.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="675.0" layoutY="240.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="710.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane layoutX="825.0" layoutY="240.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
                   <Image url="@./img/bolBois.png" />
                </image>
             </ImageView>
+            <Label text="4" textFill="WHITE">
+               <font>
+                  <Font size="73.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="860.0" layoutY="599.0" prefHeight="150.0" prefWidth="200.0">
+      <Pane layoutX="120.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
          <children>
-            <ImageView fitHeight="149.0" fitWidth="200.0" >
-               <image>
-                  <Image url="@./img/bolBois.png" />
-               </image>
-            </ImageView>
+            <Label fx:id="pseudoJoueur1" text="Joueur 1">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Circle fx:id="statusJoueur1" fill="#00ff5e" layoutX="120.0" layoutY="19.0" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5" />
+            <Label fx:id="scoreJoueur1" layoutX="15.0" layoutY="31.0" text="score : 0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
-      </StackPane>
+      </Pane>
+      <Pane layoutX="900.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
+         <children>
+            <Label fx:id="pseudoJoueur2" text="Joueur 2">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Circle fx:id="statusJoueur2" fill="#00ff5e" layoutX="120.0" layoutY="19.0" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5" />
+            <Label fx:id="scoreJoueur2" layoutX="15.0" layoutY="31.0" text="score : 0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="30.0">
+         <image>
+            <Image url="@img/menu-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

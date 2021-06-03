@@ -1,27 +1,32 @@
 package ensi;
 
+import ensi.controller.GameController;
+import ensi.model.Commande;
+import ensi.model.GameData;
+
 import java.io.*;
 
 public class ClientThread implements Runnable {
 
     private Thread _threadClient;
 
-    private PrintWriter _out;
-    private InputStream _in;
-
     public static ObjectOutputStream oos;
+    public static ObjectInputStream ois;
 
     public ClientThread()
     {
 
         try
         {
-            OutputStream os = Client.socket.getOutputStream();
-            _out = new PrintWriter(os);
 
+            OutputStream os = Client.socket.getOutputStream();
             oos = new ObjectOutputStream(os);
 
-            _in = Client.socket.getInputStream();
+
+            InputStream is = Client.socket.getInputStream();
+            ois = new ObjectInputStream(is);
+
+
         }
         catch (IOException e){ }
 
@@ -37,20 +42,17 @@ public class ClientThread implements Runnable {
 
         try
         {
-            BufferedReader input = new BufferedReader(new InputStreamReader(_in));
-            String userInput = "";
-            while((userInput = input.readLine()) != null)
+
+            while(true)
             {
-                System.out.println(userInput);
+                GameData data = (GameData) ois.readObject();
 
-
-                /*
-                InputStream is= Client.socket.getInputStream();
-                ObjectInputStream ois=new ObjectInputStream(is);
-                Client.joueur = (Joueur) ois.readObject();*/
+                GameController.controller.displayGame(data);
 
             }
-        } catch (IOException e) {
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         } finally
                 {
                     try
