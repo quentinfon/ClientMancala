@@ -41,6 +41,32 @@ public class GameController implements Initializable {
     public Label scoreJoueur2;
 
 
+    /*Score on the board*/
+    @FXML
+    public Label scoreCase1J1;
+    @FXML
+    public Label scoreCase2J1;
+    @FXML
+    public Label scoreCase3J1;
+    @FXML
+    public Label scoreCase4J1;
+    @FXML
+    public Label scoreCase5J1;
+    @FXML
+    public Label scoreCase6J1;
+    @FXML
+    public Label scoreCase1J2;
+    @FXML
+    public Label scoreCase2J2;
+    @FXML
+    public Label scoreCase3J2;
+    @FXML
+    public Label scoreCase4J2;
+    @FXML
+    public Label scoreCase5J2;
+    @FXML
+    public Label scoreCase6J2;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -115,6 +141,27 @@ public class GameController implements Initializable {
 
         }
 
+
+        if(data.cases != null){
+            int indexClient = 0;
+            if (data.joueurs[0] != null)
+                indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
+
+            scoreCase1J1.setText(data.cases[indexClient][0]+"");
+            scoreCase2J1.setText(data.cases[indexClient][1]+"");
+            scoreCase3J1.setText(data.cases[indexClient][2]+"");
+            scoreCase4J1.setText(data.cases[indexClient][3]+"");
+            scoreCase5J1.setText(data.cases[indexClient][4]+"");
+            scoreCase6J1.setText(data.cases[indexClient][5]+"");
+
+            scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][0]+"");
+            scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][1]+"");
+            scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][2]+"");
+            scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][3]+"");
+            scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][4]+"");
+            scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][5]+"");
+
+        }
 
     }
 
