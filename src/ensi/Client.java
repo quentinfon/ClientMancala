@@ -37,6 +37,7 @@ public class Client extends Application {
         screenController.addScreen("login", FXMLLoader.load(getClass().getResource( "/connexion.fxml" )));
         screenController.addScreen("game", FXMLLoader.load(getClass().getResource( "/plateauJeu.fxml" )));
 
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.setTitle("MANCALA");
         primaryStage.show();
