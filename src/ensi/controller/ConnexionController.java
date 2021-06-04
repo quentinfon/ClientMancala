@@ -72,15 +72,8 @@ public class ConnexionController implements Initializable {
 
             System.out.println("Connexion avec l'utilisateur : " + Client.joueur);
 
-            Client.screenController.activate("game");
             Client.clientThread = new ClientThread();
-
-            System.out.println("ee");
-            //Envoie du joueur au serveur
-            ClientThread.oos.writeObject(Client.joueur);
-
-            System.out.println("Test");
-
+            Client.screenController.activate("game");
 
         } catch (NumberFormatException e){
             errMessage.setText("Format du port incorrect !");

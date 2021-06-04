@@ -1,8 +1,8 @@
 package ensi;
 
 import ensi.controller.GameController;
-import ensi.model.Commande;
 import ensi.model.GameData;
+import javafx.application.Platform;
 
 import java.io.*;
 
@@ -19,13 +19,11 @@ public class ClientThread implements Runnable {
         try
         {
 
-            OutputStream os = Client.socket.getOutputStream();
-            oos = new ObjectOutputStream(os);
+            oos = new ObjectOutputStream(Client.socket.getOutputStream());
+            ois = new ObjectInputStream(Client.socket.getInputStream());
 
-
-            InputStream is = Client.socket.getInputStream();
-            ois = new ObjectInputStream(is);
-
+            //Envoie du joueur au serveur
+            oos.writeObject(Client.joueur);
 
         }
         catch (IOException e){ }
@@ -47,7 +45,9 @@ public class ClientThread implements Runnable {
             {
                 GameData data = (GameData) ois.readObject();
 
-                GameController.controller.displayGame(data);
+                Platform.runLater(() -> {
+                    GameController.controller.displayGame(data);
+                });
 
             }
 

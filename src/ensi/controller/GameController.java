@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -20,8 +21,6 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
 
     public static GameController controller;
-
-    private int count = 0;
 
     @FXML
     public Label pseudoJoueur1;
@@ -80,46 +79,42 @@ public class GameController implements Initializable {
 
 
     @FXML
-    public void handleTest(){
-        count++;
-        play(count);
+    public void handlePlay(MouseEvent event)
+    {
+        String id = ((StackPane)event.getSource()).getId().split("play")[1];
+        play(Integer.parseInt(id));
     }
 
-
-    public void handlePlayOne(MouseEvent mouseEvent) {
-        play(1);
-    }
-
-    public void handlePlayTwo(MouseEvent mouseEvent) {
-        play(2);
-    }
-
-    public void handlePlayThree(MouseEvent mouseEvent) {
-        play(3);
-    }
-
-    public void handlePlayFor(MouseEvent mouseEvent) {
-        play(4);
-    }
-
-    public void handlePlayFive(MouseEvent mouseEvent) {
-        play(5);
-    }
-
-    public void handlePlaySix(MouseEvent mouseEvent) {
-        play(6);
-    }
 
     public void displayGame(GameData data){
 
+        System.out.println(data);
+
         //Set players status
-        int indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
+        if(data.joueurs[0] != null){
+            int indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
 
-        pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
-        pseudoJoueur2.setText(data.joueurs[indexClient == 0 ? 1 : 0].pseudo);
+            pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
+            statusJoueur1.setFill(data.joueurs[indexClient].connected ? Color.GREEN : Color.RED);
 
-        statusJoueur1.setFill(data.joueurs[indexClient].connected ? Color.GREEN : Color.RED);
-        statusJoueur1.setFill(data.joueurs[indexClient == 0 ? 1 : 0].connected ? Color.GREEN : Color.RED);
+            if (data.joueurs[indexClient == 0 ? 1 : 0] != null) {
+                pseudoJoueur2.setText(data.joueurs[indexClient == 0 ? 1 : 0].pseudo);
+                statusJoueur2.setFill(data.joueurs[indexClient == 0 ? 1 : 0].connected ? Color.GREEN : Color.RED);
+            }else{
+                pseudoJoueur2.setText("En attente...");
+                statusJoueur2.setFill(Color.ORANGE);
+            }
+
+        }else{
+
+            pseudoJoueur1.setText(Client.joueur.pseudo);
+            statusJoueur1.setFill(Color.ORANGE);
+
+            pseudoJoueur2.setText("En attente...");
+            statusJoueur2.setFill(Color.ORANGE);
+
+        }
+
 
     }
 

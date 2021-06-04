@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
@@ -17,7 +19,7 @@
             <Image url="@img/plateau.png" />
          </image>
       </ImageView>
-      <StackPane layoutX="65.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play0" layoutX="65.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -37,7 +39,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </StackPane>
-      <StackPane layoutX="215.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play1" layoutX="215.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -51,7 +53,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="365.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play2" layoutX="365.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -65,7 +67,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="515.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play3" layoutX="515.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -79,7 +81,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="665.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play4" layoutX="665.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -93,7 +95,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane layoutX="825.0" layoutY="390.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="play5" layoutX="825.0" layoutY="390.0" onMouseClicked="#handlePlay" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0">
                <image>
@@ -193,12 +195,20 @@
       </StackPane>
       <Pane layoutX="120.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
          <children>
-            <Label fx:id="pseudoJoueur1" text="Joueur 1">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Circle fx:id="statusJoueur1" fill="#00ff5e" layoutX="120.0" layoutY="19.0" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5" />
+            <HBox prefHeight="73.0" prefWidth="219.0">
+               <children>
+                  <Label fx:id="pseudoJoueur1" text="Joueur 1">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="statusJoueur1" fill="#00ff5e" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Circle>
+               </children>
+            </HBox>
             <Label fx:id="scoreJoueur1" layoutX="15.0" layoutY="31.0" text="score : 0">
                <font>
                   <Font size="18.0" />
@@ -206,15 +216,23 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="900.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
+      <Pane layoutX="845.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
          <children>
-            <Label fx:id="pseudoJoueur2" text="Joueur 2">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Circle fx:id="statusJoueur2" fill="#00ff5e" layoutX="120.0" layoutY="19.0" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5" />
-            <Label fx:id="scoreJoueur2" layoutX="15.0" layoutY="31.0" text="score : 0">
+            <HBox alignment="TOP_RIGHT" layoutX="-60.0" prefHeight="56.0" prefWidth="219.0">
+               <children>
+                  <Label fx:id="pseudoJoueur2" text="Joueur 2">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="statusJoueur2" fill="#00ff5e" radius="8.0" stroke="#bfbfbf" strokeType="INSIDE" strokeWidth="0.5">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Circle>
+               </children>
+            </HBox>
+            <Label fx:id="scoreJoueur2" layoutX="50.0" layoutY="31.0" text="score : 0">
                <font>
                   <Font size="18.0" />
                </font>
