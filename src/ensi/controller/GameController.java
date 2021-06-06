@@ -67,6 +67,20 @@ public class GameController implements Initializable {
     @FXML
     public Label scoreCase6J2;
 
+    /*Playable indicator*/
+    @FXML
+    public Circle playable0;
+    @FXML
+    public Circle playable1;
+    @FXML
+    public Circle playable2;
+    @FXML
+    public Circle playable3;
+    @FXML
+    public Circle playable4;
+    @FXML
+    public Circle playable5;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -111,6 +125,23 @@ public class GameController implements Initializable {
         play(Integer.parseInt(id));
     }
 
+    public void setPlayableDisplay(boolean playerTurn, int[] playerCells){
+        if (playerTurn){
+            playable0.setOpacity(playerCells[0] > 0 ? 1 : 0);
+            playable1.setOpacity(playerCells[1] > 0 ? 1 : 0);
+            playable2.setOpacity(playerCells[2] > 0 ? 1 : 0);
+            playable3.setOpacity(playerCells[3] > 0 ? 1 : 0);
+            playable4.setOpacity(playerCells[4] > 0 ? 1 : 0);
+            playable5.setOpacity(playerCells[5] > 0 ? 1 : 0);
+        }else{
+            playable0.setOpacity(0);
+            playable1.setOpacity(0);
+            playable2.setOpacity(0);
+            playable3.setOpacity(0);
+            playable4.setOpacity(0);
+            playable5.setOpacity(0);
+        }
+    }
 
     public void displayGame(GameData data){
 
@@ -126,6 +157,11 @@ public class GameController implements Initializable {
             if (data.joueurs[indexClient == 0 ? 1 : 0] != null) {
                 pseudoJoueur2.setText(data.joueurs[indexClient == 0 ? 1 : 0].pseudo);
                 statusJoueur2.setFill(data.joueurs[indexClient == 0 ? 1 : 0].connected ? Color.GREEN : Color.RED);
+
+                //Indicateur cases jouable
+                if (data.cases != null)
+                    setPlayableDisplay(indexClient == data.playerTurn, data.cases[indexClient]);
+
             }else{
                 pseudoJoueur2.setText("En attente...");
                 statusJoueur2.setFill(Color.ORANGE);
