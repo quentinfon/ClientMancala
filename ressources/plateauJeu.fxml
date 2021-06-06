@@ -288,7 +288,7 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="30.0">
+      <ImageView fx:id="actionMenu" fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="30.0">
          <image>
             <Image url="@img/menu-icon.png" />
          </image>

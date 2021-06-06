@@ -8,7 +8,10 @@ import ensi.model.GameData;
 import ensi.model.MissingNumToPlayException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -82,9 +85,26 @@ public class GameController implements Initializable {
     public Circle playable5;
 
 
+    /*Action menu icon*/
+    @FXML
+    public ImageView actionMenu;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         controller = this;
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem test = new MenuItem("Test");
+        MenuItem newGame = new MenuItem("Test");
+        MenuItem loadGame = new MenuItem("Test");
+
+        contextMenu.getItems().addAll(test, newGame, loadGame);
+        actionMenu.setOnMouseClicked(e -> {
+            System.out.println("test");
+            contextMenu.show(actionMenu, e.getSceneX(), e.getSceneY());
+        });
+
     }
 
     public void play(int numCase){
