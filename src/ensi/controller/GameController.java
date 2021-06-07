@@ -25,6 +25,8 @@ public class GameController implements Initializable {
 
     public static GameController controller;
 
+    private boolean reverseClient = false;
+
     @FXML
     public Label pseudoJoueur1;
 
@@ -141,18 +143,22 @@ public class GameController implements Initializable {
     @FXML
     public void handlePlay(MouseEvent event)
     {
-        String id = ((StackPane)event.getSource()).getId().split("play")[1];
-        play(Integer.parseInt(id));
+        int id = Integer.parseInt(((StackPane)event.getSource()).getId().split("play")[1]);
+        //Reverse button order
+        if(reverseClient){
+            id = Math.abs(id-5);
+        }
+        play(id);
     }
 
     public void setPlayableDisplay(boolean playerTurn, int[] playerCells){
         if (playerTurn){
-            playable0.setOpacity(playerCells[0] > 0 ? 1 : 0);
-            playable1.setOpacity(playerCells[1] > 0 ? 1 : 0);
-            playable2.setOpacity(playerCells[2] > 0 ? 1 : 0);
-            playable3.setOpacity(playerCells[3] > 0 ? 1 : 0);
-            playable4.setOpacity(playerCells[4] > 0 ? 1 : 0);
-            playable5.setOpacity(playerCells[5] > 0 ? 1 : 0);
+            playable0.setOpacity(playerCells[reverseClient ? 5 : 0] > 0 ? 1 : 0);
+            playable1.setOpacity(playerCells[reverseClient ? 4 : 1] > 0 ? 1 : 0);
+            playable2.setOpacity(playerCells[reverseClient ? 3 : 2] > 0 ? 1 : 0);
+            playable3.setOpacity(playerCells[reverseClient ? 2 : 3] > 0 ? 1 : 0);
+            playable4.setOpacity(playerCells[reverseClient ? 1 : 4] > 0 ? 1 : 0);
+            playable5.setOpacity(playerCells[reverseClient ? 0 : 5] > 0 ? 1 : 0);
         }else{
             playable0.setOpacity(0);
             playable1.setOpacity(0);
@@ -170,6 +176,7 @@ public class GameController implements Initializable {
         //Set players status
         if(data.joueurs[0] != null){
             int indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
+
 
             pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
             statusJoueur1.setFill(data.joueurs[indexClient].connected ? Color.GREEN : Color.RED);
@@ -199,23 +206,36 @@ public class GameController implements Initializable {
 
 
         if(data.cases != null){
-            int indexClient = 0;
-            if (data.joueurs[0] != null)
+            int indexClient = 1;
+            if (data.joueurs[0] != null){
                 indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
 
-            scoreCase1J1.setText(data.cases[indexClient][0]+"");
-            scoreCase2J1.setText(data.cases[indexClient][1]+"");
-            scoreCase3J1.setText(data.cases[indexClient][2]+"");
-            scoreCase4J1.setText(data.cases[indexClient][3]+"");
-            scoreCase5J1.setText(data.cases[indexClient][4]+"");
-            scoreCase6J1.setText(data.cases[indexClient][5]+"");
+                System.out.println("Index client : "+indexClient);
 
-            scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][0]+"");
-            scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][1]+"");
-            scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][2]+"");
-            scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][3]+"");
-            scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][4]+"");
-            scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][5]+"");
+                if (indexClient == 0) {
+                    reverseClient = true;
+                }else{
+                    reverseClient = false;
+                }
+            }
+
+            if(reverseClient)
+                System.out.println("Reverse client");
+
+
+            scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0]+"");
+            scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1]+"");
+            scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2]+"");
+            scoreCase4J1.setText(data.cases[indexClient][reverseClient ? 2 : 3]+"");
+            scoreCase5J1.setText(data.cases[indexClient][reverseClient ? 1 : 4]+"");
+            scoreCase6J1.setText(data.cases[indexClient][reverseClient ? 0 : 5]+"");
+
+            scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0]+"");
+            scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1]+"");
+            scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2]+"");
+            scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3]+"");
+            scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4]+"");
+            scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5]+"");
 
         }
 
