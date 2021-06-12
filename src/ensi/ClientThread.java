@@ -2,6 +2,7 @@ package ensi;
 
 import ensi.controller.GameController;
 import ensi.model.GameData;
+import ensi.model.InstructionModel;
 import javafx.application.Platform;
 
 import java.io.*;
@@ -43,11 +44,17 @@ public class ClientThread implements Runnable {
 
             while(true)
             {
-                GameData data = (GameData) ois.readObject();
+                Object data = ois.readObject();
 
-                Platform.runLater(() -> {
-                    GameController.controller.displayGame(data);
-                });
+                if(data instanceof GameData){
+                    Platform.runLater(() -> {
+                        GameController.controller.displayGame((GameData) data);
+                    });
+                } else if (data instanceof InstructionModel){
+                    System.out.println("Instruction recu");
+                } else {
+                    System.out.println("Format de données recu inconnu");
+                }
 
             }
 
