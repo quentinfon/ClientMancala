@@ -20,17 +20,20 @@
    <children>
       <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Partie">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="New game" />
+                  <MenuItem mnemonicParsing="false" text="Save game" />
+                  <MenuItem mnemonicParsing="false" text="Load game" />
+                  <MenuItem mnemonicParsing="false" text="Undo move" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Paramètre">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Langue" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Aide">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
