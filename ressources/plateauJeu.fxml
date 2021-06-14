@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +18,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ensi.controller.GameController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1080.0" layoutX="353.0" layoutY="176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fitHeight="720.0" fitWidth="1080.0" layoutX="-25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@img/plateau.png" />
          </image>
@@ -242,7 +264,7 @@
             </Label>
          </children>
       </StackPane>
-      <Pane layoutX="120.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
+      <Pane layoutX="120.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="60.0">
          <children>
             <HBox prefHeight="73.0" prefWidth="219.0">
                <children>
@@ -265,7 +287,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="845.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0">
+      <Pane layoutX="845.0" layoutY="30.0" prefHeight="73.0" prefWidth="164.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0">
          <children>
             <HBox alignment="TOP_RIGHT" layoutX="-60.0" prefHeight="56.0" prefWidth="219.0">
                <children>
@@ -288,10 +310,5 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="actionMenu" fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="30.0">
-         <image>
-            <Image url="@img/menu-icon.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

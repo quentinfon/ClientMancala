@@ -8,9 +8,7 @@ import ensi.model.GameData;
 import ensi.model.MissingNumToPlayException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -28,63 +26,25 @@ public class GameController implements Initializable {
     private boolean reverseClient = false;
 
     @FXML
-    public Label pseudoJoueur1;
+    public Label pseudoJoueur1, pseudoJoueur2;
 
     @FXML
-    public Label pseudoJoueur2;
+    public Circle statusJoueur1, statusJoueur2;
 
     @FXML
-    public Circle statusJoueur1;
-
-    @FXML
-    public Circle statusJoueur2;
-
-    @FXML
-    public Label scoreJoueur1;
-
-    @FXML
-    public Label scoreJoueur2;
+    public Label scoreJoueur1, scoreJoueur2;
 
 
     /*Score on the board*/
     @FXML
-    public Label scoreCase1J1;
+    public Label scoreCase1J1, scoreCase2J1, scoreCase3J1, scoreCase4J1, scoreCase5J1, scoreCase6J1;
     @FXML
-    public Label scoreCase2J1;
-    @FXML
-    public Label scoreCase3J1;
-    @FXML
-    public Label scoreCase4J1;
-    @FXML
-    public Label scoreCase5J1;
-    @FXML
-    public Label scoreCase6J1;
-    @FXML
-    public Label scoreCase1J2;
-    @FXML
-    public Label scoreCase2J2;
-    @FXML
-    public Label scoreCase3J2;
-    @FXML
-    public Label scoreCase4J2;
-    @FXML
-    public Label scoreCase5J2;
-    @FXML
-    public Label scoreCase6J2;
+    public Label scoreCase1J2, scoreCase2J2, scoreCase3J2, scoreCase4J2, scoreCase5J2, scoreCase6J2;
+
 
     /*Playable indicator*/
     @FXML
-    public Circle playable0;
-    @FXML
-    public Circle playable1;
-    @FXML
-    public Circle playable2;
-    @FXML
-    public Circle playable3;
-    @FXML
-    public Circle playable4;
-    @FXML
-    public Circle playable5;
+    public Circle playable0, playable1, playable2, playable3, playable4, playable5;
 
 
     /*Action menu icon*/
@@ -95,18 +55,6 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         controller = this;
-
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem test = new MenuItem("Test");
-        MenuItem newGame = new MenuItem("Test");
-        MenuItem loadGame = new MenuItem("Test");
-
-        contextMenu.getItems().addAll(test, newGame, loadGame);
-        actionMenu.setOnMouseClicked(e -> {
-            System.out.println("test");
-            contextMenu.show(actionMenu, e.getSceneX(), e.getSceneY());
-        });
-
     }
 
     public void play(int numCase){
