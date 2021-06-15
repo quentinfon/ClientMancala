@@ -52,7 +52,7 @@ public class ClientThread implements Runnable {
                     });
                 } else if (data instanceof InstructionModel){
                     Platform.runLater(() -> {
-                        GameController.controller.server_request((InstructionModel) data);
+                        GameController.controller.server_instruction_stream((InstructionModel) data);
                     });
                 } else {
                     System.out.println("Format de données recu inconnu");

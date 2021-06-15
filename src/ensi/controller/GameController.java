@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -46,11 +45,6 @@ public class GameController implements Initializable {
     /*Playable indicator*/
     @FXML
     public Circle playable0, playable1, playable2, playable3, playable4, playable5;
-
-
-    /*Action menu icon*/
-    @FXML
-    public ImageView actionMenu;
 
 
     @Override
@@ -193,7 +187,10 @@ public class GameController implements Initializable {
 
     }
 
-
+    /**
+     * Server request (new game ...)
+     * @param data the request
+     */
     public void server_request(InstructionModel data){
 
         String demande = "";
@@ -222,6 +219,43 @@ public class GameController implements Initializable {
             ClientThread.oos.writeObject(reponse);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Server info (player disconnect ...)
+     * @param data the request
+     */
+    public void server_info(InstructionModel data){
+
+        String message = "";
+
+        switch (data.instruction){
+            case OPPONENT_DISCONNECT:
+                message = Utils.firstLetterToUpper(Traduction.get("opponent_disconnect"));
+                break;
+            default:
+                return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, message);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+
+    }
+
+    /**
+     * Server instruction stream
+     * @param data the instruction
+     */
+    public void server_instruction_stream(InstructionModel data){
+
+        if (data.instruction == Instruction.NEW_GAME || data.instruction == Instruction.SURRENDER ||data.instruction == Instruction.LOAD_GAME){
+            server_request(data);
+        } else {
+            server_info(data);
         }
 
     }
