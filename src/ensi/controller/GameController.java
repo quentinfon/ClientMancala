@@ -2,12 +2,13 @@ package ensi.controller;
 
 import ensi.Client;
 import ensi.ClientThread;
-import ensi.model.Action;
-import ensi.model.Commande;
-import ensi.model.GameData;
-import ensi.model.MissingNumToPlayException;
+import ensi.Utils;
+import ensi.model.*;
+import ensi.trad.Traduction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -73,6 +74,7 @@ public class GameController implements Initializable {
 
     }
 
+    @FXML
     public void newGame(){
         //Redirect to login if not connected
         if (Client.socket == null){
@@ -190,5 +192,39 @@ public class GameController implements Initializable {
         }
 
     }
+
+
+    public void server_request(InstructionModel data){
+
+        String demande = "";
+
+        switch (data.instruction){
+            case NEW_GAME:
+                demande = Utils.firstLetterToUpper(Traduction.get("new_game_request"));
+                break;
+            default:
+                return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, demande, ButtonType.YES, ButtonType.NO);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+        InstructionModel reponse;
+
+        if (alert.getResult() == ButtonType.YES) {
+            reponse = new InstructionModel(Instruction.YES);
+        }else{
+            reponse = new InstructionModel(Instruction.NO);
+        }
+
+        try {
+            ClientThread.oos.writeObject(reponse);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

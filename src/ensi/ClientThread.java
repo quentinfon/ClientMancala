@@ -51,7 +51,9 @@ public class ClientThread implements Runnable {
                         GameController.controller.displayGame((GameData) data);
                     });
                 } else if (data instanceof InstructionModel){
-                    System.out.println("Instruction recu");
+                    Platform.runLater(() -> {
+                        GameController.controller.server_request((InstructionModel) data);
+                    });
                 } else {
                     System.out.println("Format de données recu inconnu");
                 }
