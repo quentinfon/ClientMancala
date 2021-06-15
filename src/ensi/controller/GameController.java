@@ -69,7 +69,7 @@ public class GameController implements Initializable {
     }
 
     @FXML
-    public void newGame(){
+    public void sendAction(Action action){
         //Redirect to login if not connected
         if (Client.socket == null){
             Client.screenController.activate("login");
@@ -77,10 +77,25 @@ public class GameController implements Initializable {
         }
 
         try {
-            ClientThread.oos.writeObject(new Commande(Action.NEW_GAME));
+            ClientThread.oos.writeObject(new Commande(action));
         } catch (IOException | MissingNumToPlayException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void newGame(){
+        sendAction(Action.NEW_GAME);
+    }
+
+    @FXML
+    public void saveGame(){
+        sendAction(Action.SAVE_GAME);
+    }
+
+    @FXML
+    public void loadGame(){
+        sendAction(Action.LOAD_GAME);
     }
 
 
