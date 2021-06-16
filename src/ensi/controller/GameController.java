@@ -9,11 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -41,6 +44,7 @@ public class GameController implements Initializable {
     public Label scoreCase1J2, scoreCase2J2, scoreCase3J2, scoreCase4J2, scoreCase5J2, scoreCase6J2;
 
 
+
     /*Playable indicator*/
     @FXML
     public Circle playable0, playable1, playable2, playable3, playable4, playable5;
@@ -52,6 +56,10 @@ public class GameController implements Initializable {
     @FXML
     public MenuItem menuNewGame, menuSaveGame, menuLoadGame, menuUndo, menuAbout, langFR, langEN;
 
+    @FXML
+    public StackPane case1J2, case2J2, case3J2, case4J2, case5J2, case6J2;
+    @FXML
+    public StackPane case1J1, case2J1, case3J1, case4J1, case5J1, case6J1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -104,6 +112,9 @@ public class GameController implements Initializable {
     public void loadGame(){
         sendAction(Action.LOAD_GAME);
     }
+
+
+    private HashMap<StackPane, ArrayList<Circle>> listeDesPions = new HashMap<>();
 
 
     @FXML
@@ -221,7 +232,59 @@ public class GameController implements Initializable {
             scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4]+"");
             scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5]+"");
 
+
+            setPionsImg(case1J1, data.cases[indexClient][reverseClient ? 5 : 0], -75);
+            setPionsImg(case2J1, data.cases[indexClient][reverseClient ? 4 : 1], -75);
+            setPionsImg(case3J1, data.cases[indexClient][reverseClient ? 3 : 2], -75);
+            setPionsImg(case4J1, data.cases[indexClient][reverseClient ? 2 : 3], -75);
+            setPionsImg(case5J1, data.cases[indexClient][reverseClient ? 1 : 4], -75);
+            setPionsImg(case6J1, data.cases[indexClient][reverseClient ? 0 : 5], -75);
+
+            setPionsImg(case1J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0], 0);
+            setPionsImg(case2J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1], 0);
+            setPionsImg(case3J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2], 0);
+            setPionsImg(case4J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3], 0);
+            setPionsImg(case5J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4], 0);
+            setPionsImg(case6J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5], 0);
+
+
         }
+
+    }
+
+
+    /**
+     * Set the img to the cell base on the number
+     * @param pane stackpane
+     * @param nbPions number
+     */
+    public void setPionsImg(StackPane pane, int nbPions, int yOffset){
+
+        if (listeDesPions.containsKey(pane)){
+            pane.getChildren().removeAll(listeDesPions.get(pane));
+            listeDesPions.remove(pane);
+        }
+
+        ArrayList<CoordoneesPionts> coordonees = CoordoneesPionts.listeCoordonnees();
+
+        ArrayList<Circle> pions = new ArrayList<>();
+
+        for (int i = 0; i < nbPions; i++){
+            if(i < coordonees.size()){
+                CoordoneesPionts placement = coordonees.get(i);
+
+                Circle pion = new Circle();
+                pion.setFill(Color.WHITE);
+                pion.setRadius(8);
+
+                pion.setTranslateX(placement.decalageX);
+                pion.setTranslateY(placement.decalageY + yOffset);
+                pane.getChildren().add(pion);
+                pions.add(pion);
+            }
+        }
+
+        listeDesPions.put(pane, pions);
 
     }
 
