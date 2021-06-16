@@ -102,11 +102,12 @@ public class GameController implements Initializable {
     @FXML
     public void handlePlay(MouseEvent event)
     {
-        int id = Integer.parseInt(((StackPane)event.getSource()).getId().split("play")[1]);
+        int id = Integer.parseInt(((Circle)event.getSource()).getId().split("playable")[1]);
         //Reverse button order
         if(reverseClient){
             id = Math.abs(id-5);
         }
+        System.out.println(id);
         play(id);
     }
 
