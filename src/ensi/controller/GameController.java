@@ -14,7 +14,6 @@ import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -57,6 +56,7 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         controller = this;
+        refreshViewLanguage();
     }
 
     public void play(int numCase){
@@ -120,28 +120,17 @@ public class GameController implements Initializable {
 
     @FXML
     public void setFrench(){
-        changeLanguage("FR");
+        Traduction.changeLanguage("FR");
+        refreshViewLanguage();
     }
 
     @FXML
     public void setEnglish(){
-        changeLanguage("EN");
-    }
-
-
-    public void changeLanguage(String langue){
-        switch (langue){
-            case "FR":
-                Traduction.setLanguage(Locale.FRENCH);
-                break;
-            case "EN" :
-                Traduction.setLanguage(Locale.ENGLISH);
-                break;
-            default:
-                break;
-        }
+        Traduction.changeLanguage("EN");
         refreshViewLanguage();
     }
+
+
 
     public void setPlayableDisplay(boolean playerTurn, int[] playerCells){
         if (playerTurn){
@@ -173,19 +162,19 @@ public class GameController implements Initializable {
 
             pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
             statusJoueur1.setFill(data.joueurs[indexClient].connected ? Color.GREEN : Color.RED);
-            scoreJoueur1.setText("Score : "+data.scores[indexClient]);
+            scoreJoueur1.setText(Traduction.get("score")+" : "+data.scores[indexClient]);
 
             if (data.joueurs[indexClient == 0 ? 1 : 0] != null) {
                 pseudoJoueur2.setText(data.joueurs[indexClient == 0 ? 1 : 0].pseudo);
                 statusJoueur2.setFill(data.joueurs[indexClient == 0 ? 1 : 0].connected ? Color.GREEN : Color.RED);
-                scoreJoueur2.setText("Score : "+data.scores[indexClient == 0 ? 1 : 0]);
+                scoreJoueur2.setText(Traduction.get("score")+" : "+data.scores[indexClient == 0 ? 1 : 0]);
 
                 //Indicateur cases jouable
                 if (data.cases != null)
                     setPlayableDisplay(indexClient == data.playerTurn, data.cases[indexClient]);
 
             }else{
-                pseudoJoueur2.setText("En attente...");
+                pseudoJoueur2.setText(Traduction.get("waiting_another_player"));
                 statusJoueur2.setFill(Color.ORANGE);
             }
 
@@ -194,7 +183,7 @@ public class GameController implements Initializable {
             pseudoJoueur1.setText(Client.joueur.pseudo);
             statusJoueur1.setFill(Color.ORANGE);
 
-            pseudoJoueur2.setText("En attente...");
+            pseudoJoueur2.setText(Traduction.get("waiting_another_player"));
             statusJoueur2.setFill(Color.ORANGE);
 
         }
@@ -324,7 +313,6 @@ public class GameController implements Initializable {
         menuParameter.setText(Utils.firstLetterToUpper(Traduction.get("parameter")));
 
 
-
         menuLangues.setText(Utils.firstLetterToUpper(Traduction.get("language")));
 
 
@@ -334,9 +322,13 @@ public class GameController implements Initializable {
 
         menuHelp.setText(Utils.firstLetterToUpper(Traduction.get("help")));
         menuAbout.setText(Utils.firstLetterToUpper(Traduction.get("about")));
+
+        if(gameData != null)
+            displayGame(gameData);
+
     }
 
-    public String selectedLanguage(String language){
+    private String selectedLanguage(String language){
         if(Traduction.getLanguage().equals(language)){
             return " - X";
         }

@@ -34,7 +34,7 @@
             <Menu fx:id="menuParameter" mnemonicParsing="false" text="Paramètre" />
             <Menu fx:id="menuLangues" mnemonicParsing="false" text="Langues">
               <items>
-                <MenuItem fx:id="langFR" mnemonicParsing="false" onAction="#setFrench" text="Français - X" />
+                <MenuItem fx:id="langFR" mnemonicParsing="false" onAction="#setFrench" text="Français" />
                   <MenuItem fx:id="langEN" mnemonicParsing="false" onAction="#setEnglish" text="Anglais" />
               </items>
             </Menu>

@@ -28,7 +28,7 @@ public class Client extends Application {
         stage = primaryStage;
 
         //Set default language
-        Traduction.setLanguage(Locale.FRENCH);
+        Traduction.setLanguage(Locale.ENGLISH);
 
         Scene scene = new Scene(new AnchorPane(), 1080, 720);
 

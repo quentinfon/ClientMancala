@@ -22,7 +22,24 @@ public class Traduction {
     }
 
     public static String getLanguage(){
-        return gameBundle.getLocale().getLanguage();
+        if(gameBundle != null)
+            return gameBundle.getLocale().getLanguage();
+
+        return "";
+    }
+
+    public static
+    void changeLanguage(String langue){
+        switch (langue){
+            case "FR":
+                Traduction.setLanguage(Locale.FRENCH);
+                break;
+            case "EN" :
+                Traduction.setLanguage(Locale.ENGLISH);
+                break;
+            default:
+                break;
+        }
     }
 
 }
