@@ -21,24 +21,26 @@
    <children>
       <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Partie">
+          <Menu fx:id="menuPartie" mnemonicParsing="false" text="Partie">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#newGame" text="New game" />
+              <MenuItem fx:id="menuNewGame" mnemonicParsing="false" onAction="#newGame" text="New game" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#saveGame" text="Save game" />
-                  <MenuItem mnemonicParsing="false" onAction="#loadGame" text="Load game" />
+                  <MenuItem fx:id="menuSaveGame" mnemonicParsing="false" onAction="#saveGame" text="Save game" />
+                  <MenuItem fx:id="menuLoadGame" mnemonicParsing="false" onAction="#loadGame" text="Load game" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Undo move" />
+                  <MenuItem fx:id="menuUndo" mnemonicParsing="false" text="Undo move" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Paramètre">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Langue" />
-               </items>
+            <Menu fx:id="menuParameter" mnemonicParsing="false" text="Paramètre" />
+            <Menu fx:id="menuLangues" mnemonicParsing="false" text="Langues">
+              <items>
+                <MenuItem fx:id="langFR" mnemonicParsing="false" onAction="#setFrench" text="Français - X" />
+                  <MenuItem fx:id="langEN" mnemonicParsing="false" onAction="#setEnglish" text="Anglais" />
+              </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Aide">
+          <Menu fx:id="menuHelp" mnemonicParsing="false" text="Aide">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>

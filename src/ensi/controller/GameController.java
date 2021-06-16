@@ -7,21 +7,21 @@ import ensi.model.*;
 import ensi.trad.Traduction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
 
     public static GameController controller;
+
+    private GameData gameData;
 
     private boolean reverseClient = false;
 
@@ -45,6 +45,13 @@ public class GameController implements Initializable {
     /*Playable indicator*/
     @FXML
     public Circle playable0, playable1, playable2, playable3, playable4, playable5;
+
+
+    @FXML
+    public Menu menuPartie, menuParameter, menuHelp, menuLangues;
+
+    @FXML
+    public MenuItem menuNewGame, menuSaveGame, menuLoadGame, menuUndo, menuAbout, langFR, langEN;
 
 
     @Override
@@ -111,6 +118,31 @@ public class GameController implements Initializable {
         play(id);
     }
 
+    @FXML
+    public void setFrench(){
+        changeLanguage("FR");
+    }
+
+    @FXML
+    public void setEnglish(){
+        changeLanguage("EN");
+    }
+
+
+    public void changeLanguage(String langue){
+        switch (langue){
+            case "FR":
+                Traduction.setLanguage(Locale.FRENCH);
+                break;
+            case "EN" :
+                Traduction.setLanguage(Locale.ENGLISH);
+                break;
+            default:
+                break;
+        }
+        refreshViewLanguage();
+    }
+
     public void setPlayableDisplay(boolean playerTurn, int[] playerCells){
         if (playerTurn){
             playable0.setOpacity(playerCells[reverseClient ? 5 : 0] > 0 ? 1 : 0);
@@ -131,6 +163,7 @@ public class GameController implements Initializable {
 
     public void displayGame(GameData data){
 
+        gameData = data;
         System.out.println(data);
 
         //Set players status
@@ -275,6 +308,41 @@ public class GameController implements Initializable {
         }
 
     }
+
+
+    /**
+     * Set the client language
+     */
+    public void refreshViewLanguage(){
+
+        menuPartie.setText(Utils.firstLetterToUpper(Traduction.get("game")));
+        menuNewGame.setText(Utils.firstLetterToUpper(Traduction.get("new_game")));
+        menuSaveGame.setText(Utils.firstLetterToUpper(Traduction.get("save_game")));
+        menuLoadGame.setText(Utils.firstLetterToUpper(Traduction.get("load_game")));
+        menuUndo.setText(Utils.firstLetterToUpper(Traduction.get("undo_move")));
+
+        menuParameter.setText(Utils.firstLetterToUpper(Traduction.get("parameter")));
+
+
+
+        menuLangues.setText(Utils.firstLetterToUpper(Traduction.get("language")));
+
+
+        langFR.setText(Utils.firstLetterToUpper(Traduction.get("french") + selectedLanguage("fr")));
+        langEN.setText(Utils.firstLetterToUpper(Traduction.get("english") + selectedLanguage("en")));
+
+
+        menuHelp.setText(Utils.firstLetterToUpper(Traduction.get("help")));
+        menuAbout.setText(Utils.firstLetterToUpper(Traduction.get("about")));
+    }
+
+    public String selectedLanguage(String language){
+        if(Traduction.getLanguage().equals(language)){
+            return " - X";
+        }
+        return "";
+    }
+
 
 
 }

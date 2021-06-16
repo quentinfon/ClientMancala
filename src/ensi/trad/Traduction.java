@@ -21,4 +21,8 @@ public class Traduction {
 
     }
 
+    public static String getLanguage(){
+        return gameBundle.getLocale().getLanguage();
+    }
+
 }
