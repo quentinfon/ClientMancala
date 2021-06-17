@@ -1,5 +1,6 @@
 package ensi;
 import ensi.controller.ScreenController;
+import ensi.model.ClientConfig;
 import ensi.model.Joueur;
 import ensi.trad.Traduction;
 import javafx.application.Application;
@@ -22,9 +23,14 @@ public class Client extends Application {
     public static ClientThread clientThread;
     public static ScreenController screenController;
 
+    public static ClientConfig config;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        joueur = new Joueur();
+
+        config = ClientConfig.getConfig();
+
+        joueur = new Joueur(config.clientID);
         stage = primaryStage;
 
         //Set default language
