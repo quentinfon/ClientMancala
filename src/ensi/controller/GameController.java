@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -62,6 +63,14 @@ public class GameController implements Initializable {
     public StackPane case1J2, case2J2, case3J2, case4J2, case5J2, case6J2;
     @FXML
     public StackPane case1J1, case2J1, case3J1, case4J1, case5J1, case6J1;
+
+
+    @FXML
+    public Label turnInfo;
+
+    @FXML
+    public Button splitLastPoints;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -174,14 +183,64 @@ public class GameController implements Initializable {
         }
     }
 
+
+    /**
+     * Return the points left to claim
+     * @param cells the game board
+     * @return the number of point left
+     */
+    private int sumLeftPoint(int[][] cells){
+
+        int count = 0;
+        try{
+            for (int i = 0; i < 2; i++){
+                for (int j = 0; j < 6; j++){
+                    count += cells[i][j];
+                }
+            }
+            return count;
+        }catch (Exception e){
+            return -1;
+        }
+    }
+
+    /**
+     * Display the game
+     * @param data the game data
+     */
     public void displayGame(GameData data){
 
         gameData = data;
         System.out.println(data);
 
+        //Display split button
+        int leftPoints = sumLeftPoint(data.cases);
+        if (leftPoints != -1 && leftPoints < 10){
+            splitLastPoints.setText(Traduction.get("split_points_button"));
+            splitLastPoints.setDisable(false);
+            splitLastPoints.setOpacity(1);
+        }else {
+            splitLastPoints.setDisable(true);
+            splitLastPoints.setOpacity(0);
+        }
+
         //Set players status
         if(data.joueurs[0] != null){
             int indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
+
+            //Display players turn
+            if (data.joueurs[1] != null){
+                if (indexClient == data.playerTurn){
+                    turnInfo.setText(Traduction.get("your_turn"));
+                    turnInfo.setTextFill(Color.GREEN);
+                } else {
+                    turnInfo.setText(Traduction.get("opponent_turn"));
+                    turnInfo.setTextFill(Color.RED);
+                }
+            } else {
+                turnInfo.setText("");
+            }
+
 
 
             pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
@@ -205,7 +264,7 @@ public class GameController implements Initializable {
             }
 
         }else{
-
+            //If waiting for an opponent
             pseudoJoueur1.setText(Client.joueur.pseudo);
             statusJoueur1.setFill(Color.ORANGE);
 
@@ -217,10 +276,10 @@ public class GameController implements Initializable {
 
         if(data.cases != null){
             int indexClient = 1;
+
+            //Set the client in reverse if client is the second player
             if (data.joueurs[0] != null){
                 indexClient = data.joueurs[0].equals(Client.joueur) ? 0 : 1;
-
-                System.out.println("Index client : "+indexClient);
 
                 if (indexClient == 0) {
                     reverseClient = true;
@@ -229,10 +288,7 @@ public class GameController implements Initializable {
                 }
             }
 
-            if(reverseClient)
-                System.out.println("Reverse client");
-
-
+            //Display points on each cells
             scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0]+"");
             scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1]+"");
             scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2]+"");
@@ -315,6 +371,15 @@ public class GameController implements Initializable {
             case NEW_GAME:
                 demande = Utils.firstLetterToUpper(Traduction.get("new_game_request"));
                 break;
+            case SAVE_GAME:
+                demande = Utils.firstLetterToUpper(Traduction.get("save_request"));
+                break;
+            case LOAD_GAME:
+                demande = Utils.firstLetterToUpper(Traduction.get("load_request"));
+                break;
+            case SURRENDER:
+                demande = Utils.firstLetterToUpper(Traduction.get("surrender_request"));
+                break;
             default:
                 return;
         }
@@ -368,7 +433,7 @@ public class GameController implements Initializable {
      */
     public void server_instruction_stream(InstructionModel data){
 
-        if (data.instruction == Instruction.NEW_GAME || data.instruction == Instruction.SURRENDER ||data.instruction == Instruction.LOAD_GAME){
+        if (data.instruction == Instruction.NEW_GAME|| data.instruction == Instruction.SAVE_GAME || data.instruction == Instruction.SURRENDER ||data.instruction == Instruction.LOAD_GAME){
             server_request(data);
         } else {
             server_info(data);
