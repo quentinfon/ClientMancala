@@ -6,14 +6,12 @@ import java.util.UUID;
 
 public class ClientConfig implements Serializable {
 
-    public String clientID;
     public Locale language;
     public boolean sounds;
     public boolean music;
 
 
     public ClientConfig(String clientID, Locale lang, boolean sounds, boolean music){
-        this.clientID = clientID;
         this.language = lang;
         this.sounds = sounds;
         this.music = music;

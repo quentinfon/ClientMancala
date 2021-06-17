@@ -16,16 +16,16 @@ public class Joueur implements Serializable
 
     public boolean connected;
 
-    public Joueur(String id)
+    public Joueur()
     {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.action= new ArrayList<>();
         this.connected = true;
     }
 
-    public Joueur(String id, String pseudo, String ip, String port)
+    public Joueur(String pseudo, String ip, String port)
     {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.pseudo = pseudo;
         this.ip=ip;
         this.port=port;

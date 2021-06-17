@@ -30,7 +30,7 @@ public class Client extends Application {
 
         config = ClientConfig.getConfig();
 
-        joueur = new Joueur(config.clientID);
+        joueur = new Joueur();
         stage = primaryStage;
 
         //Set default language
