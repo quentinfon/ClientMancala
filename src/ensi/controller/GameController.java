@@ -233,19 +233,19 @@ public class GameController implements Initializable {
             scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5]+"");
 
 
-            setPionsImg(case1J1, data.cases[indexClient][reverseClient ? 5 : 0], -75);
-            setPionsImg(case2J1, data.cases[indexClient][reverseClient ? 4 : 1], -75);
-            setPionsImg(case3J1, data.cases[indexClient][reverseClient ? 3 : 2], -75);
-            setPionsImg(case4J1, data.cases[indexClient][reverseClient ? 2 : 3], -75);
-            setPionsImg(case5J1, data.cases[indexClient][reverseClient ? 1 : 4], -75);
-            setPionsImg(case6J1, data.cases[indexClient][reverseClient ? 0 : 5], -75);
+            setPionsImg(case1J1, data.cases[indexClient][reverseClient ? 5 : 0], -75, 1, 0);
+            setPionsImg(case2J1, data.cases[indexClient][reverseClient ? 4 : 1], -75, 1, 1);
+            setPionsImg(case3J1, data.cases[indexClient][reverseClient ? 3 : 2], -75, 1, 2);
+            setPionsImg(case4J1, data.cases[indexClient][reverseClient ? 2 : 3], -75, 1, 3);
+            setPionsImg(case5J1, data.cases[indexClient][reverseClient ? 1 : 4], -75, 1, 4);
+            setPionsImg(case6J1, data.cases[indexClient][reverseClient ? 0 : 5], -75, 1, 5);
 
-            setPionsImg(case1J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0], 0);
-            setPionsImg(case2J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1], 0);
-            setPionsImg(case3J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2], 0);
-            setPionsImg(case4J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3], 0);
-            setPionsImg(case5J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4], 0);
-            setPionsImg(case6J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5], 0);
+            setPionsImg(case1J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0], 0, 2, 0);
+            setPionsImg(case2J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1], 0, 2, 1);
+            setPionsImg(case3J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2], 0, 2, 2);
+            setPionsImg(case4J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3], 0, 2, 3);
+            setPionsImg(case5J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4], 0, 2, 4);
+            setPionsImg(case6J2, data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5], 0, 2, 5);
 
 
         }
@@ -258,14 +258,14 @@ public class GameController implements Initializable {
      * @param pane stackpane
      * @param nbPions number
      */
-    public void setPionsImg(StackPane pane, int nbPions, int yOffset){
+    public void setPionsImg(StackPane pane, int nbPions, int yOffset, int player, int cell){
 
         if (listeDesPions.containsKey(pane)){
             pane.getChildren().removeAll(listeDesPions.get(pane));
             listeDesPions.remove(pane);
         }
 
-        ArrayList<CoordoneesPionts> coordonees = CoordoneesPionts.listeCoordonnees();
+        ArrayList<CoordoneesPionts> coordonees = CoordoneesPionts.randomCoordonnees(player, cell);
 
         ArrayList<Circle> pions = new ArrayList<>();
 

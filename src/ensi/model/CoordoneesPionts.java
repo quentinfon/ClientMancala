@@ -1,6 +1,7 @@
 package ensi.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CoordoneesPionts {
 
@@ -40,6 +41,25 @@ public class CoordoneesPionts {
 
 
         return liste;
+    }
+
+    public static ArrayList<CoordoneesPionts> randomCoordonnees(int joueur, int cell){
+        long seed = (6L *joueur + cell);
+        Random generator = new Random(seed);
+
+        ArrayList<CoordoneesPionts> listeCoor = listeCoordonnees();
+        ArrayList<CoordoneesPionts> randList = new ArrayList<>();
+
+        while (listeCoor.size() > 0){
+
+            int index = generator.nextInt(listeCoor.size());
+
+            randList.add(listeCoor.get(index));
+            listeCoor.remove(index);
+
+        }
+
+        return randList;
     }
 
 
