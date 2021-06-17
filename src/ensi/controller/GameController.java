@@ -34,7 +34,7 @@ public class GameController implements Initializable {
     public Circle statusJoueur1, statusJoueur2;
 
     @FXML
-    public Label scoreJoueur1, scoreJoueur2;
+    public Label scoreJoueur1, scoreJoueur2, victoriesJoueur1, victoriesJoueur2;
 
 
     /*Score on the board*/
@@ -174,12 +174,14 @@ public class GameController implements Initializable {
             pseudoJoueur1.setText(data.joueurs[indexClient].pseudo);
             statusJoueur1.setFill(data.joueurs[indexClient].connected ? Color.GREEN : Color.RED);
             scoreJoueur1.setText(Traduction.get("score")+" : "+data.scores[indexClient]);
+            victoriesJoueur1.setText(Traduction.get("victories")+" : "+data.victories[indexClient]+ "/ 6");
+
 
             if (data.joueurs[indexClient == 0 ? 1 : 0] != null) {
                 pseudoJoueur2.setText(data.joueurs[indexClient == 0 ? 1 : 0].pseudo);
                 statusJoueur2.setFill(data.joueurs[indexClient == 0 ? 1 : 0].connected ? Color.GREEN : Color.RED);
                 scoreJoueur2.setText(Traduction.get("score")+" : "+data.scores[indexClient == 0 ? 1 : 0]);
-
+                victoriesJoueur2.setText(Traduction.get("victories")+" : "+data.victories[indexClient == 0 ? 1 : 0] + "/ 6");
                 //Indicateur cases jouable
                 if (data.cases != null)
                     setPlayableDisplay(indexClient == data.playerTurn, data.cases[indexClient]);
