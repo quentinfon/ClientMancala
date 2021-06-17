@@ -4,6 +4,8 @@ import ensi.Client;
 import ensi.ClientThread;
 import ensi.Utils;
 import ensi.model.*;
+import ensi.sound.SoudEvent;
+import ensi.sound.Sounds;
 import ensi.trad.Traduction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -125,7 +127,18 @@ public class GameController implements Initializable {
         if(reverseClient){
             id = Math.abs(id-5);
         }
-        System.out.println(id);
+
+        if(gameData != null && gameData.joueurs[0] != null){
+            int indexClient = gameData.joueurs[0].equals(Client.joueur) ? 0 : 1;
+            if (gameData.cases[indexClient][id] > 0 && gameData.playerTurn == indexClient){
+                Sounds.getPlayer().play(SoudEvent.PLAY);
+            } else {
+                Sounds.getPlayer().play(SoudEvent.NOT_PLAYABLE);
+            }
+        }else {
+            Sounds.getPlayer().play(SoudEvent.PLAY);
+        }
+
         play(id);
     }
 
