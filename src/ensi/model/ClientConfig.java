@@ -7,14 +7,18 @@ import java.util.UUID;
 public class ClientConfig implements Serializable {
 
     public Locale language;
+    public boolean displaySeedNumbersOnHover;
+    public boolean displayAllSeeds;
     public boolean sounds;
     public boolean music;
 
 
-    public ClientConfig(String clientID, Locale lang, boolean sounds, boolean music){
+    public ClientConfig(String clientID, Locale lang, boolean sounds, boolean music, boolean displayAllSeeds, boolean displaySeedNumbersOnHover){
         this.language = lang;
         this.sounds = sounds;
         this.music = music;
+        this.displayAllSeeds = displayAllSeeds;
+        this.displaySeedNumbersOnHover = displaySeedNumbersOnHover;
     }
 
 
@@ -30,6 +34,16 @@ public class ClientConfig implements Serializable {
 
     public void setMusic(boolean music){
         this.music = music;
+        saveConfig();
+    }
+
+    public void setDisplaySeedNumbersOnHover(boolean s){
+        this.displaySeedNumbersOnHover = s;
+        saveConfig();
+    }
+
+    public void setDisplayAllSeeds(boolean s){
+        this.displayAllSeeds = s;
         saveConfig();
     }
 
@@ -60,7 +74,7 @@ public class ClientConfig implements Serializable {
     public static ClientConfig getConfig(){
 
         //default config
-        ClientConfig config = new ClientConfig(UUID.randomUUID().toString(), Locale.FRENCH, true, true);
+        ClientConfig config = new ClientConfig(UUID.randomUUID().toString(), Locale.FRENCH, true, true, false, true);
 
         File file = new File("mancala.config");
 

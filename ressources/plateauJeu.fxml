@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -30,9 +31,16 @@
                   <MenuItem fx:id="menuLoadGame" mnemonicParsing="false" onAction="#loadGame" text="Load game" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuUndo" mnemonicParsing="false" text="Undo move" />
+                  <MenuItem fx:id="menuSurrender" mnemonicParsing="false" onAction="#surrender" text="Surrender" />
             </items>
           </Menu>
-            <Menu fx:id="menuParameter" mnemonicParsing="false" text="Paramètre" />
+            <Menu fx:id="menuParameter" mnemonicParsing="false" text="Paramètre">
+               <items>
+                  <RadioMenuItem fx:id="seedNumberOnHover" mnemonicParsing="false" onAction="#handleSeedNumberOnHover" text="Seed number on hover" />
+                  <RadioMenuItem fx:id="allSeedNumbers" mnemonicParsing="false" onAction="#handleAllSeedNumbers" text="see all seeds numbers" />
+                  <RadioMenuItem fx:id="allowSounds" mnemonicParsing="false" onAction="#handleAllowSounds" text="Sounds" />
+                  <RadioMenuItem fx:id="allowMusic" mnemonicParsing="false" onAction="#handleAllowMusic" text="Music" />
+               </items></Menu>
             <Menu fx:id="menuLangues" mnemonicParsing="false" text="Langues">
               <items>
                 <MenuItem fx:id="langFR" mnemonicParsing="false" onAction="#setFrench" text="Français" />
@@ -42,6 +50,7 @@
           <Menu fx:id="menuHelp" mnemonicParsing="false" text="Aide">
             <items>
               <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="menuRules" mnemonicParsing="false" text="Rules" />
             </items>
           </Menu>
         </menus>
@@ -51,7 +60,7 @@
             <Image url="@img/plateau.png" />
          </image>
       </ImageView>
-      <StackPane fx:id="case1J1" layoutX="65.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case1J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="65.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -61,7 +70,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <Circle fx:id="playable0" blendMode="OVERLAY" fill="#f6ff0000" onMouseClicked="#handlePlay" opacity="0.0" radius="65.0" stroke="#ff66005e" strokeType="INSIDE" strokeWidth="8.0" StackPane.alignment="TOP_CENTER">
+            <Circle fx:id="playable0" blendMode="OVERLAY" fill="#f6ff0000" onMouseClicked="#handlePlay" radius="65.0" stroke="#ff66005e" strokeType="INSIDE" strokeWidth="8.0" StackPane.alignment="TOP_CENTER">
                <effect>
                   <Glow level="1.0" />
                </effect>
@@ -85,7 +94,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </StackPane>
-      <StackPane fx:id="case2J1" layoutX="215.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case2J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="215.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -113,7 +122,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case3J1" layoutX="365.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case3J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="365.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -141,7 +150,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case4J1" layoutX="515.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case4J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="515.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -169,7 +178,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case5J1" layoutX="665.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case5J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="665.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -197,7 +206,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case6J1" layoutX="825.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case6J1" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="825.0" layoutY="420.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="TOP_CENTER">
                <image>
@@ -225,7 +234,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case1J2" layoutX="75.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case1J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="75.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>
@@ -242,7 +251,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case2J2" layoutX="225.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case2J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="225.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>
@@ -259,7 +268,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case3J2" layoutX="375.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case3J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="375.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>
@@ -276,7 +285,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case4J2" layoutX="525.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case4J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="525.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>
@@ -293,7 +302,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case5J2" layoutX="675.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case5J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="675.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>
@@ -310,7 +319,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane fx:id="case6J2" layoutX="825.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
+      <StackPane fx:id="case6J2" onMouseEntered="#enterCell" onMouseExited="#exitCell" layoutX="825.0" layoutY="200.0" prefHeight="225.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="149.0" fitWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <image>

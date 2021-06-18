@@ -9,11 +9,11 @@ import ensi.sound.Sounds;
 import ensi.trad.Traduction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -57,7 +57,7 @@ public class GameController implements Initializable {
     public Menu menuPartie, menuParameter, menuHelp, menuLangues;
 
     @FXML
-    public MenuItem menuNewGame, menuSaveGame, menuLoadGame, menuUndo, menuAbout, langFR, langEN;
+    public MenuItem menuNewGame, menuSaveGame, menuLoadGame, menuUndo, menuAbout, langFR, langEN, menuSurrender, menuRules;
 
     @FXML
     public StackPane case1J2, case2J2, case3J2, case4J2, case5J2, case6J2;
@@ -70,6 +70,10 @@ public class GameController implements Initializable {
 
     @FXML
     public Button splitLastPoints;
+
+
+    @FXML
+    public RadioMenuItem seedNumberOnHover, allSeedNumbers, allowSounds, allowMusic;
 
 
     @Override
@@ -122,6 +126,34 @@ public class GameController implements Initializable {
     @FXML
     public void loadGame(){
         sendAction(Action.LOAD_GAME);
+    }
+
+    @FXML
+    public void surrender(){
+        sendAction(Action.SURRENDER);
+    }
+
+
+    @FXML
+    public void enterCell(MouseEvent mouseEvent) {
+        if(Client.config.displaySeedNumbersOnHover){
+            for (Node nodeIn : ((StackPane) mouseEvent.getSource()).getChildren()){
+                if (nodeIn instanceof Label){
+                    nodeIn.setOpacity(1);
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void exitCell(MouseEvent mouseEvent) {
+        if(Client.config.displaySeedNumbersOnHover && !Client.config.displayAllSeeds){
+            for (Node nodeIn : ((StackPane) mouseEvent.getSource()).getChildren()){
+                if (nodeIn instanceof Label){
+                    nodeIn.setOpacity(0);
+                }
+            }
+        }
     }
 
 
@@ -233,9 +265,14 @@ public class GameController implements Initializable {
                 if (indexClient == data.playerTurn){
                     turnInfo.setText(Traduction.get("your_turn"));
                     turnInfo.setTextFill(Color.GREEN);
+
+                    menuSurrender.setDisable(false);
                 } else {
                     turnInfo.setText(Traduction.get("opponent_turn"));
                     turnInfo.setTextFill(Color.RED);
+
+                    splitLastPoints.setDisable(true);
+                    menuSurrender.setDisable(true);
                 }
             } else {
                 turnInfo.setText("");
@@ -289,19 +326,35 @@ public class GameController implements Initializable {
             }
 
             //Display points on each cells
-            scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0]+"");
-            scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1]+"");
-            scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2]+"");
-            scoreCase4J1.setText(data.cases[indexClient][reverseClient ? 2 : 3]+"");
-            scoreCase5J1.setText(data.cases[indexClient][reverseClient ? 1 : 4]+"");
-            scoreCase6J1.setText(data.cases[indexClient][reverseClient ? 0 : 5]+"");
+            if (Client.config.displayAllSeeds) {
+                scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0] + ""); scoreCase1J1.setOpacity(1);
+                scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1] + ""); scoreCase2J1.setOpacity(1);
+                scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2] + ""); scoreCase3J1.setOpacity(1);
+                scoreCase4J1.setText(data.cases[indexClient][reverseClient ? 2 : 3] + ""); scoreCase4J1.setOpacity(1);
+                scoreCase5J1.setText(data.cases[indexClient][reverseClient ? 1 : 4] + ""); scoreCase5J1.setOpacity(1);
+                scoreCase6J1.setText(data.cases[indexClient][reverseClient ? 0 : 5] + ""); scoreCase6J1.setOpacity(1);
 
-            scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0]+"");
-            scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1]+"");
-            scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2]+"");
-            scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3]+"");
-            scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4]+"");
-            scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5]+"");
+                scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0] + ""); scoreCase1J2.setOpacity(1);
+                scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1] + ""); scoreCase2J2.setOpacity(1);
+                scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2] + ""); scoreCase3J2.setOpacity(1);
+                scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3] + ""); scoreCase4J2.setOpacity(1);
+                scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4] + ""); scoreCase5J2.setOpacity(1);
+                scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5] + ""); scoreCase6J2.setOpacity(1);
+            }else{
+                scoreCase1J1.setOpacity(0);
+                scoreCase2J1.setOpacity(0);
+                scoreCase3J1.setOpacity(0);
+                scoreCase4J1.setOpacity(0);
+                scoreCase5J1.setOpacity(0);
+                scoreCase6J1.setOpacity(0);
+
+                scoreCase1J2.setOpacity(0);
+                scoreCase2J2.setOpacity(0);
+                scoreCase3J2.setOpacity(0);
+                scoreCase4J2.setOpacity(0);
+                scoreCase5J2.setOpacity(0);
+                scoreCase6J2.setOpacity(0);
+            }
 
 
             setPionsImg(case1J1, data.cases[indexClient][reverseClient ? 5 : 0], -75, 1, 0);
@@ -464,6 +517,28 @@ public class GameController implements Initializable {
     }
 
 
+    @FXML
+    public void handleSeedNumberOnHover(){
+        Client.config.setDisplaySeedNumbersOnHover(seedNumberOnHover.isSelected());
+    }
+
+    @FXML
+    public void handleAllSeedNumbers(){
+        Client.config.setDisplayAllSeeds(allSeedNumbers.isSelected());
+        displayGame(gameData);
+    }
+
+    @FXML
+    public void handleAllowSounds(){
+        Client.config.setSounds(allowSounds.isSelected());
+    }
+
+    @FXML
+    public void handleAllowMusic(){
+        Client.config.setMusic(allowMusic.isSelected());
+    }
+
+
     /**
      * Set the client language
      */
@@ -474,8 +549,19 @@ public class GameController implements Initializable {
         menuSaveGame.setText(Utils.firstLetterToUpper(Traduction.get("save_game")));
         menuLoadGame.setText(Utils.firstLetterToUpper(Traduction.get("load_game")));
         menuUndo.setText(Utils.firstLetterToUpper(Traduction.get("undo_move")));
+        menuSurrender.setText(Utils.firstLetterToUpper(Traduction.get("surrender")));
+
 
         menuParameter.setText(Utils.firstLetterToUpper(Traduction.get("parameter")));
+        seedNumberOnHover.setText(Utils.firstLetterToUpper(Traduction.get("seed_on_hover")));
+        allSeedNumbers.setText(Utils.firstLetterToUpper(Traduction.get("all_seeds")));
+        allowSounds.setText(Utils.firstLetterToUpper(Traduction.get("sounds")));
+        allowMusic.setText(Utils.firstLetterToUpper(Traduction.get("music")));
+
+        seedNumberOnHover.setSelected(Client.config.displaySeedNumbersOnHover);
+        allSeedNumbers.setSelected(Client.config.displayAllSeeds);
+        allowSounds.setSelected(Client.config.sounds);
+        allowMusic.setSelected(Client.config.music);
 
 
         menuLangues.setText(Utils.firstLetterToUpper(Traduction.get("language")));
@@ -487,6 +573,8 @@ public class GameController implements Initializable {
 
         menuHelp.setText(Utils.firstLetterToUpper(Traduction.get("help")));
         menuAbout.setText(Utils.firstLetterToUpper(Traduction.get("about")));
+        menuRules.setText(Utils.firstLetterToUpper(Traduction.get("rules")));
+
 
         if(gameData != null)
             displayGame(gameData);
