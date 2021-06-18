@@ -416,6 +416,28 @@ public class GameController implements Initializable {
             case OPPONENT_DISCONNECT:
                 message = Utils.firstLetterToUpper(Traduction.get("opponent_disconnect"));
                 break;
+            case END_OF_GAME:
+                if(data.data.equals("")){
+                    message = Traduction.get("draw_game");
+                }else{
+                    if(data.data.equals(Client.joueur.id)){
+                        message = Traduction.get("victory_game");
+                    } else {
+                        message = Traduction.get("defeat_game");
+                    }
+                }
+                break;
+            case END_OF_MATCH:
+                if(data.data.equals("")){
+                    message = Traduction.get("draw_match");
+                }else{
+                    if(data.data.equals(Client.joueur.id)){
+                        message = Traduction.get("victory_match");
+                    } else {
+                        message = Traduction.get("defeat_match");
+                    }
+                }
+                break;
             default:
                 return;
         }
