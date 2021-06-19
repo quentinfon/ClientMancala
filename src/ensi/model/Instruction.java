@@ -9,10 +9,11 @@ public enum Instruction implements Serializable {
     END_OF_MATCH,
     NEW_GAME,
     SAVE_GAME,
-    SURRENDER,
+    SPLIT_LAST_POINTS,
     LOAD_GAME,
     OPPONENT_DISCONNECT,
     YES,
-    NO
+    NO,
+    UNDO_MOVE
 
 }

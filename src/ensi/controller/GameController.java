@@ -133,6 +133,9 @@ public class GameController implements Initializable {
         sendAction(Action.SURRENDER);
     }
 
+    @FXML
+    public void undoMove() {sendAction(Action.UNDO_MOVE);}
+
 
     @FXML
     public void enterCell(MouseEvent mouseEvent) {
@@ -267,12 +270,14 @@ public class GameController implements Initializable {
                     turnInfo.setTextFill(Color.GREEN);
 
                     menuSurrender.setDisable(false);
+                    menuUndo.setDisable(true);
                 } else {
                     turnInfo.setText(Traduction.get("opponent_turn"));
                     turnInfo.setTextFill(Color.RED);
 
                     splitLastPoints.setDisable(true);
                     menuSurrender.setDisable(true);
+                    menuUndo.setDisable(false);
                 }
             } else {
                 turnInfo.setText("");
@@ -430,7 +435,7 @@ public class GameController implements Initializable {
             case LOAD_GAME:
                 demande = Utils.firstLetterToUpper(Traduction.get("load_request"));
                 break;
-            case SURRENDER:
+            case SPLIT_LAST_POINTS:
                 demande = Utils.firstLetterToUpper(Traduction.get("surrender_request"));
                 break;
             default:
@@ -491,6 +496,9 @@ public class GameController implements Initializable {
                     }
                 }
                 break;
+            case UNDO_MOVE:
+                message = new StringBuilder(Traduction.get("opponent_undo_move"));
+                break;
             default:
                 return;
         }
@@ -515,7 +523,7 @@ public class GameController implements Initializable {
      */
     public void server_instruction_stream(InstructionModel data){
 
-        if (data.instruction == Instruction.NEW_GAME|| data.instruction == Instruction.SAVE_GAME || data.instruction == Instruction.SURRENDER ||data.instruction == Instruction.LOAD_GAME){
+        if (data.instruction == Instruction.NEW_GAME|| data.instruction == Instruction.SAVE_GAME || data.instruction == Instruction.SPLIT_LAST_POINTS ||data.instruction == Instruction.LOAD_GAME){
             server_request(data);
         } else {
             server_info(data);
