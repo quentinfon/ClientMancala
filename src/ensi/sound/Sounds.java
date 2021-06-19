@@ -3,12 +3,15 @@ package ensi.sound;
 import ensi.Client;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.net.URL;
 
 public class Sounds {
 
     public static Sounds player;
+
+    public MediaPlayer music;
 
     public static Sounds getPlayer(){
         if (player == null){
@@ -41,7 +44,6 @@ public class Sounds {
         }
 
         if(!fileName.equals("")){
-            System.out.println("sounds/" + fileName);
             URL resource = getClass().getResource("/sounds/" + fileName);
             if (resource == null) {
                 System.out.println("Fichier introuvable");
@@ -54,5 +56,32 @@ public class Sounds {
         }
 
     }
+
+    public void startMusic(){
+
+        if (music == null) {
+            URL resource = getClass().getResource("/sounds/music.wav");
+            if (resource == null) {
+                System.out.println("Musique introuvable");
+                return;
+            }
+
+            music = new MediaPlayer(new Media(resource.toString()));
+            music.setOnEndOfMedia(() -> music.seek(Duration.ZERO));
+            music.setVolume(0.1);
+        }
+
+        if(Client.config.music)
+            music.play();
+    }
+
+    public void stopMusic(){
+
+        if(music != null){
+            music.stop();
+        }
+
+    }
+
 
 }

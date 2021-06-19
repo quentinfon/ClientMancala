@@ -573,6 +573,12 @@ public class GameController implements Initializable {
     @FXML
     public void handleAllowMusic(){
         Client.config.setMusic(allowMusic.isSelected());
+        if(allowMusic.isSelected()){
+            Sounds.getPlayer().startMusic();
+        }else{
+            Sounds.getPlayer().stopMusic();
+        }
+
     }
 
 

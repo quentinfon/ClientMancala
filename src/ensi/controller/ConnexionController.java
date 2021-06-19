@@ -3,6 +3,7 @@ package ensi.controller;
 import ensi.Client;
 import ensi.ClientThread;
 import ensi.Utils;
+import ensi.sound.Sounds;
 import ensi.trad.Traduction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,6 +74,7 @@ public class ConnexionController implements Initializable {
 
             Client.clientThread = new ClientThread();
             Client.screenController.activate("game");
+            Sounds.getPlayer().startMusic();
             GameController.controller.refreshViewLanguage();
 
         } catch (NumberFormatException e){
