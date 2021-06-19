@@ -15,12 +15,20 @@ public class Traduction {
 
     }
 
+    /**
+     * Set language of the translation
+     * @param language the language
+     */
     public static void setLanguage(Locale language) {
 
         gameBundle = ResourceBundle.getBundle("language/game", language);
 
     }
 
+    /**
+     * Get the current language
+     * @return current language
+     */
     public static String getLanguage(){
         if(gameBundle != null)
             return gameBundle.getLocale().getLanguage();
@@ -28,8 +36,11 @@ public class Traduction {
         return "";
     }
 
-    public static
-    void changeLanguage(String langue){
+    /**
+     * Change the language used
+     * @param langue the new language
+     */
+    public static void changeLanguage(String langue){
         switch (langue){
             case "FR":
                 Traduction.setLanguage(Locale.FRENCH);

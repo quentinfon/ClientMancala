@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -75,6 +76,8 @@ public class GameController implements Initializable {
     @FXML
     public RadioMenuItem seedNumberOnHover, allSeedNumbers, allowSounds, allowMusic;
 
+    private HashMap<StackPane, ArrayList<Circle>> listeDesPions = new HashMap<>();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,6 +85,10 @@ public class GameController implements Initializable {
         refreshViewLanguage();
     }
 
+    /**
+     * Function to play a turn
+     * @param numCase the cell to play
+     */
     public void play(int numCase){
 
         //Redirect to login if not connected
@@ -98,6 +105,10 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Send an action ton the server
+     * @param action the action
+     */
     @FXML
     public void sendAction(Action action){
         //Redirect to login if not connected
@@ -113,34 +124,54 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * Request a new game
+     */
     @FXML
     public void newGame(){
         sendAction(Action.NEW_GAME);
     }
 
+    /**
+     * Request to save the game
+     */
     @FXML
     public void saveGame(){
         sendAction(Action.SAVE_GAME);
     }
 
+    /**
+     * Request to load a game
+     */
     @FXML
     public void loadGame(){
         sendAction(Action.LOAD_GAME);
     }
 
+    /**
+     * Request to surrender
+     */
     @FXML
     public void surrender(){
         sendAction(Action.SURRENDER);
     }
 
+    /**
+     * Request to undo last move
+     */
     @FXML
     public void undoMove() {sendAction(Action.UNDO_MOVE);}
 
+    /**
+     * Split last points
+     */
     @FXML
     public void handleSplitPoints() {sendAction(Action.SPLIT_LAST_POINTS);}
 
 
-
+    /**
+     * Display an alert with the rules
+     */
     @FXML
     public void showRules(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION, Traduction.get("rules_of_the_game"));
@@ -148,6 +179,9 @@ public class GameController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Display information of the application
+     */
     @FXML
     public void showAbout(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION, Traduction.get("credits"));
@@ -155,6 +189,10 @@ public class GameController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * On mousse enter in a cell
+     * @param mouseEvent the event
+     */
     @FXML
     public void enterCell(MouseEvent mouseEvent) {
         if(Client.config.displaySeedNumbersOnHover){
@@ -166,6 +204,10 @@ public class GameController implements Initializable {
         }
     }
 
+    /**
+     * On mousse leaving a cell
+     * @param mouseEvent the event
+     */
     @FXML
     public void exitCell(MouseEvent mouseEvent) {
         if(Client.config.displaySeedNumbersOnHover && !Client.config.displayAllSeeds){
@@ -177,10 +219,10 @@ public class GameController implements Initializable {
         }
     }
 
-
-    private HashMap<StackPane, ArrayList<Circle>> listeDesPions = new HashMap<>();
-
-
+    /**
+     * When clicking on a play cell
+     * @param event the event
+     */
     @FXML
     public void handlePlay(MouseEvent event)
     {
@@ -204,20 +246,32 @@ public class GameController implements Initializable {
         play(id);
     }
 
+    /**
+     * Set language to french
+     */
     @FXML
     public void setFrench(){
         Traduction.changeLanguage("FR");
+        Client.config.setLanguage(Locale.FRENCH);
         refreshViewLanguage();
     }
 
+    /**
+     * Set language to english
+     */
     @FXML
     public void setEnglish(){
         Traduction.changeLanguage("EN");
+        Client.config.setLanguage(Locale.ENGLISH);
         refreshViewLanguage();
     }
 
 
-
+    /**
+     * Display if a cell is playable
+     * @param playerTurn the player turn
+     * @param playerCells the cells of the player
+     */
     public void setPlayableDisplay(boolean playerTurn, int[] playerCells){
         if (playerTurn){
             playable0.setOpacity(playerCells[reverseClient ? 5 : 0] > 0 ? 1 : 0);
@@ -553,23 +607,34 @@ public class GameController implements Initializable {
 
     }
 
-
+    /**
+     * Checkbox of seed on hover
+     */
     @FXML
     public void handleSeedNumberOnHover(){
         Client.config.setDisplaySeedNumbersOnHover(seedNumberOnHover.isSelected());
     }
 
+    /**
+     * Checkbox of all seed
+     */
     @FXML
     public void handleAllSeedNumbers(){
         Client.config.setDisplayAllSeeds(allSeedNumbers.isSelected());
         displayGame(gameData);
     }
 
+    /**
+     * Checkbox of sounds
+     */
     @FXML
     public void handleAllowSounds(){
         Client.config.setSounds(allowSounds.isSelected());
     }
 
+    /**
+     * Checkbox of music
+     */
     @FXML
     public void handleAllowMusic(){
         Client.config.setMusic(allowMusic.isSelected());
@@ -624,6 +689,11 @@ public class GameController implements Initializable {
 
     }
 
+    /**
+     * Return custom string if selected language
+     * @param language the language selected
+     * @return custom string
+     */
     private String selectedLanguage(String language){
         if(Traduction.getLanguage().equals(language)){
             return " - X";

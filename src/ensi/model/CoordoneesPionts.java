@@ -13,6 +13,10 @@ public class CoordoneesPionts {
         decalageY = y;
     }
 
+    /**
+     * Return list of positions for seeds
+     * @return list of positions
+     */
     public static ArrayList<CoordoneesPionts> listeCoordonnees(){
 
         ArrayList<CoordoneesPionts> liste = new ArrayList<>();
@@ -43,6 +47,10 @@ public class CoordoneesPionts {
         return liste;
     }
 
+    /**
+     * Return random list of positions for seeds
+     * @return random list of positions
+     */
     public static ArrayList<CoordoneesPionts> randomCoordonnees(int joueur, int cell){
         long seed = (6L *joueur + cell);
         Random generator = new Random(seed);

@@ -13,6 +13,10 @@ public class Sounds {
 
     public MediaPlayer music;
 
+    /**
+     * Get the sound player
+     * @return the sound player
+     */
     public static Sounds getPlayer(){
         if (player == null){
             player = new Sounds();
@@ -20,6 +24,10 @@ public class Sounds {
         return player;
     }
 
+    /**
+     * Play a sound
+     * @param event the sound event
+     */
     public void play(SoudEvent event){
 
         if (!Client.config.sounds) return;
@@ -57,6 +65,9 @@ public class Sounds {
 
     }
 
+    /**
+     * Start the music
+     */
     public void startMusic(){
 
         if (music == null) {
@@ -75,6 +86,9 @@ public class Sounds {
             music.play();
     }
 
+    /**
+     * Stop the music
+     */
     public void stopMusic(){
 
         if(music != null){

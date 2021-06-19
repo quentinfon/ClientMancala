@@ -21,33 +21,54 @@ public class ClientConfig implements Serializable {
         this.displaySeedNumbersOnHover = displaySeedNumbersOnHover;
     }
 
-
+    /**
+     * Set the language of the config
+     * @param l the language
+     */
     public void setLanguage(Locale l){
         this.language = l;
         saveConfig();
     }
 
+    /**
+     * Set if sounds is on
+     * @param sounds true : on else false
+     */
     public void setSounds(boolean sounds){
         this.sounds = sounds;
         saveConfig();
     }
 
+    /**
+     * Set if music is on
+     * @param music true : on else false
+     */
     public void setMusic(boolean music){
         this.music = music;
         saveConfig();
     }
 
+    /**
+     * Set seed number on hover
+     * @param s true or flase
+     */
     public void setDisplaySeedNumbersOnHover(boolean s){
         this.displaySeedNumbersOnHover = s;
         saveConfig();
     }
 
+    /**
+     * Set display all seed numbers
+     * @param s true or flase
+     */
     public void setDisplayAllSeeds(boolean s){
         this.displayAllSeeds = s;
         saveConfig();
     }
 
-
+    /**
+     * Save the config on a file
+     */
     public void saveConfig(){
         File file = new File("mancala.config");
         FileOutputStream fos = null;
@@ -70,7 +91,10 @@ public class ClientConfig implements Serializable {
         }
     }
 
-
+    /**
+     * Get the config
+     * @return the config
+     */
     public static ClientConfig getConfig(){
 
         //default config
