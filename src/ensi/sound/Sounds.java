@@ -33,6 +33,9 @@ public class Sounds {
             case DEFEAT:
                 fileName="game_lost.wav";
                 break;
+            case VICTORY:
+                fileName="victory.wav";
+                break;
             default:
                 break;
         }

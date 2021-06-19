@@ -498,8 +498,10 @@ public class GameController implements Initializable {
                 }else{
                     if(data.data.equals(Client.joueur.id)){
                         message = new StringBuilder(Traduction.get("victory_game"));
+                        Sounds.getPlayer().play(SoudEvent.VICTORY);
                     } else {
                         message = new StringBuilder(Traduction.get("defeat_game"));
+                        Sounds.getPlayer().play(SoudEvent.DEFEAT);
                     }
                 }
                 break;
@@ -509,8 +511,10 @@ public class GameController implements Initializable {
                 }else{
                     if(data.data.equals(Client.joueur.id)){
                         message = new StringBuilder(Traduction.get("victory_match"));
+                        Sounds.getPlayer().play(SoudEvent.VICTORY);
                     } else {
                         message = new StringBuilder(Traduction.get("defeat_match"));
+                        Sounds.getPlayer().play(SoudEvent.DEFEAT);
                     }
                 }
                 break;
