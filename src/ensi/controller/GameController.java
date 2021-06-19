@@ -463,31 +463,31 @@ public class GameController implements Initializable {
      */
     public void server_info(InstructionModel data){
 
-        String message = "";
+        StringBuilder message = new StringBuilder();
 
         switch (data.instruction){
             case OPPONENT_DISCONNECT:
-                message = Utils.firstLetterToUpper(Traduction.get("opponent_disconnect"));
+                message = new StringBuilder(Utils.firstLetterToUpper(Traduction.get("opponent_disconnect")));
                 break;
             case END_OF_GAME:
                 if(data.data.equals("")){
-                    message = Traduction.get("draw_game");
+                    message = new StringBuilder(Traduction.get("draw_game"));
                 }else{
                     if(data.data.equals(Client.joueur.id)){
-                        message = Traduction.get("victory_game");
+                        message = new StringBuilder(Traduction.get("victory_game"));
                     } else {
-                        message = Traduction.get("defeat_game");
+                        message = new StringBuilder(Traduction.get("defeat_game"));
                     }
                 }
                 break;
             case END_OF_MATCH:
                 if(data.data.equals("")){
-                    message = Traduction.get("draw_match");
+                    message = new StringBuilder(Traduction.get("draw_match"));
                 }else{
                     if(data.data.equals(Client.joueur.id)){
-                        message = Traduction.get("victory_match");
+                        message = new StringBuilder(Traduction.get("victory_match"));
                     } else {
-                        message = Traduction.get("defeat_match");
+                        message = new StringBuilder(Traduction.get("defeat_match"));
                     }
                 }
                 break;
@@ -495,7 +495,14 @@ public class GameController implements Initializable {
                 return;
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message);
+        if (data.scores != null) {
+            message.append("\n\n\n").append(Traduction.get("best_scores")).append(" : \n\n");
+            for (Score score : data.scores){
+                message.append(" - ").append(score.winnerName).append(" : ").append(score.score).append("\n");
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, message.toString());
         alert.setHeaderText(null);
         alert.showAndWait();
 
