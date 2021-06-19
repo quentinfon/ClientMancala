@@ -325,36 +325,36 @@ public class GameController implements Initializable {
                 }
             }
 
+
+            scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0] + "");
+            scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1] + "");
+            scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2] + "");
+            scoreCase4J1.setText(data.cases[indexClient][reverseClient ? 2 : 3] + "");
+            scoreCase5J1.setText(data.cases[indexClient][reverseClient ? 1 : 4] + "");
+            scoreCase6J1.setText(data.cases[indexClient][reverseClient ? 0 : 5] + "");
+
+            scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0] + "");
+            scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1] + "");
+            scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2] + "");
+            scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3] + "");
+            scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4] + "");
+            scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5] + "");
+
             //Display points on each cells
-            if (Client.config.displayAllSeeds) {
-                scoreCase1J1.setText(data.cases[indexClient][reverseClient ? 5 : 0] + ""); scoreCase1J1.setOpacity(1);
-                scoreCase2J1.setText(data.cases[indexClient][reverseClient ? 4 : 1] + ""); scoreCase2J1.setOpacity(1);
-                scoreCase3J1.setText(data.cases[indexClient][reverseClient ? 3 : 2] + ""); scoreCase3J1.setOpacity(1);
-                scoreCase4J1.setText(data.cases[indexClient][reverseClient ? 2 : 3] + ""); scoreCase4J1.setOpacity(1);
-                scoreCase5J1.setText(data.cases[indexClient][reverseClient ? 1 : 4] + ""); scoreCase5J1.setOpacity(1);
-                scoreCase6J1.setText(data.cases[indexClient][reverseClient ? 0 : 5] + ""); scoreCase6J1.setOpacity(1);
+            scoreCase1J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase2J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase3J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase4J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase5J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase6J1.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
 
-                scoreCase1J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 5 : 0] + ""); scoreCase1J2.setOpacity(1);
-                scoreCase2J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 4 : 1] + ""); scoreCase2J2.setOpacity(1);
-                scoreCase3J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 3 : 2] + ""); scoreCase3J2.setOpacity(1);
-                scoreCase4J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 2 : 3] + ""); scoreCase4J2.setOpacity(1);
-                scoreCase5J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 1 : 4] + ""); scoreCase5J2.setOpacity(1);
-                scoreCase6J2.setText(data.cases[indexClient == 0 ? 1 : 0][reverseClient ? 0 : 5] + ""); scoreCase6J2.setOpacity(1);
-            }else{
-                scoreCase1J1.setOpacity(0);
-                scoreCase2J1.setOpacity(0);
-                scoreCase3J1.setOpacity(0);
-                scoreCase4J1.setOpacity(0);
-                scoreCase5J1.setOpacity(0);
-                scoreCase6J1.setOpacity(0);
+            scoreCase1J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase2J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase3J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase4J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase5J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
+            scoreCase6J2.setOpacity(Client.config.displayAllSeeds ? 1 : 0);
 
-                scoreCase1J2.setOpacity(0);
-                scoreCase2J2.setOpacity(0);
-                scoreCase3J2.setOpacity(0);
-                scoreCase4J2.setOpacity(0);
-                scoreCase5J2.setOpacity(0);
-                scoreCase6J2.setOpacity(0);
-            }
 
 
             setPionsImg(case1J1, data.cases[indexClient][reverseClient ? 5 : 0], -75, 1, 0);
