@@ -136,6 +136,24 @@ public class GameController implements Initializable {
     @FXML
     public void undoMove() {sendAction(Action.UNDO_MOVE);}
 
+    @FXML
+    public void handleSplitPoints() {sendAction(Action.SPLIT_LAST_POINTS);}
+
+
+
+    @FXML
+    public void showRules(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, Traduction.get("rules_of_the_game"));
+        alert.setHeaderText(Utils.firstLetterToUpper(Traduction.get("rules")));
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void showAbout(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, Traduction.get("credits"));
+        alert.setHeaderText("MANCALA v1.0");
+        alert.showAndWait();
+    }
 
     @FXML
     public void enterCell(MouseEvent mouseEvent) {

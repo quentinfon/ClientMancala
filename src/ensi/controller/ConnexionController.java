@@ -94,6 +94,13 @@ public class ConnexionController implements Initializable {
         refreshViewLanguage();
     }
 
+    @FXML
+    public void showAbout(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, Traduction.get("credits"));
+        alert.setHeaderText("MANCALA v1.0");
+        alert.showAndWait();
+    }
+
 
     /**
      * Set the client language

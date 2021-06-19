@@ -49,8 +49,8 @@
             </Menu>
           <Menu fx:id="menuHelp" mnemonicParsing="false" text="Aide">
             <items>
-              <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />
-                  <MenuItem fx:id="menuRules" mnemonicParsing="false" text="Rules" />
+              <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#showAbout" text="About" />
+                  <MenuItem fx:id="menuRules" mnemonicParsing="false" onAction="#showRules" text="Rules" />
             </items>
           </Menu>
         </menus>
@@ -392,7 +392,7 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="splitLastPoints" disable="true" layoutX="510.0" layoutY="145.0" mnemonicParsing="false" opacity="0.0" prefHeight="36.0" prefWidth="130.0" text="Split last points" />
+      <Button fx:id="splitLastPoints" disable="true" layoutX="510.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleSplitPoints" opacity="0.0" prefHeight="36.0" prefWidth="130.0" text="Split last points" />
       <Label fx:id="turnInfo" alignment="CENTER" layoutX="366.0" layoutY="60.0" prefHeight="73.0" prefWidth="419.0">
          <font>
             <Font size="40.0" />
